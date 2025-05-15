@@ -51,7 +51,7 @@ const AboutSection = () => {
             <div className="relative rounded-md overflow-hidden border-2 border-portfolio-teal w-full max-w-[300px] mx-auto">
               <div className="absolute inset-0 bg-portfolio-teal opacity-20 group-hover:opacity-0 transition-opacity duration-300"></div>
               <img
-                src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1587&q=80"
+                src="https://drive.google.com/file/d/1T0aXIZMZf7vsvpI1PG6thKYPPtMWsLFu/view?usp=sharing"
                 alt="Ricky Portrait"
                 className="w-full grayscale hover:grayscale-0 transition-all duration-300"
               />
