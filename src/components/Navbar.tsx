@@ -83,7 +83,7 @@ const Navbar = () => {
             ))}
           </ol>
           <a
-            href="/resume.pdf"
+            href="https://raw.githubusercontent.com/Ricky-Hacker001/ricky/main/src/components/Ricky_Resume.pdf"
             className="cyber-button px-4 py-2 rounded text-sm hover:text-portfolio-lightest-slate"
             aria-label="View Resume"
           >
@@ -134,7 +134,7 @@ const Navbar = () => {
             ))}
           </ol>
           <a
-            href="/resume.pdf"
+            href="https://raw.githubusercontent.com/Ricky-Hacker001/ricky/main/src/components/Ricky_Resume.pdf"
             className="mt-8 cyber-button px-8 py-3 rounded text-sm"
             onClick={() => setMobileMenuOpen(false)}
             aria-label="View Resume"
