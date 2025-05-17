@@ -1,5 +1,5 @@
 import React from 'react';
-import { Lock, Shield, Code, Database, Bug, Terminal } from 'lucide-react';
+import { Lock, Shield, Code, Database, Bug, Terminal, TerminalIcon, Computer } from 'lucide-react';
 
 const AboutSection = () => {
   const skills = [
@@ -11,9 +11,9 @@ const AboutSection = () => {
 
   const specializations = [
     { 
-      name: "Cybersecurity", 
+      name: "Ethical Hacking", 
       icon: Shield,
-      description: "Penetration testing, vulnerability assessment, and security auditing"
+      description: "Penetration testing, vulnerability assessment, and security auditing White-hat hacking techniques to identify and fix security vulnerabilities"
     },
     { 
       name: "IoT Development", 
@@ -26,9 +26,9 @@ const AboutSection = () => {
       description: "Designing and implementing secure networking protocols and infrastructure"
     },
     { 
-      name: "Ethical Hacking", 
-      icon: Bug,
-      description: "White-hat hacking techniques to identify and fix security vulnerabilities"
+      name: "Developer", 
+      icon: Computer,
+      description: "Designing and developing secure web applications with robust authentication and data protection mechanisms."
     },
   ];
 
