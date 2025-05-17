@@ -108,7 +108,7 @@ const EducationSection = () => {
                   </div>
                   <div className="font-fira-code">
                     <h4 className="text-portfolio-lightest-slate text-lg font-medium">1st Place <span className="text-portfolio-teal">|</span> IoT Hackathon</h4>
-                    <p className="text-xs text-portfolio-slate mt-1">$ date: 2023-06-15</p>
+                    <p className="text-xs text-portfolio-slate mt-1">$ date: 2025-03</p>
                   </div>
                 </div>
                 <p className="text-portfolio-slate">
@@ -128,7 +128,7 @@ const EducationSection = () => {
                   </div>
                   <div className="font-fira-code">
                     <h4 className="text-portfolio-lightest-slate text-lg font-medium">1st Place <span className="text-portfolio-teal">|</span> GenAI hackathon</h4>
-                    <p className="text-xs text-portfolio-slate mt-1">$ date: 2024-01-20</p>
+                    <p className="text-xs text-portfolio-slate mt-1">$ date: 2025-04</p>
                   </div>
                 </div>
                 <p className="text-portfolio-slate">
@@ -148,7 +148,7 @@ const EducationSection = () => {
                   </div>
                   <div className="font-fira-code">
                     <h4 className="text-portfolio-lightest-slate text-lg font-medium">4th Place <span className="text-portfolio-teal">|</span> Smart India Hackathon</h4>
-                    <p className="text-xs text-portfolio-slate mt-1">$ date: 2023-10-08</p>
+                    <p className="text-xs text-portfolio-slate mt-1">$ date: 2024-10</p>
                   </div>
                 </div>
                 <p className="text-portfolio-slate">
