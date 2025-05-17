@@ -158,7 +158,7 @@ const ContactSection = () => {
         
         <div className="mt-16 flex justify-center gap-8">
           <a 
-            href="https://linkedin.com/in/ricky" 
+            href="https://www.linkedin.com/in/ricky-f-btech/" 
             className="text-portfolio-lightest-slate hover:text-portfolio-teal transition-colors group"
             target="_blank"
             rel="noopener noreferrer"
@@ -169,7 +169,7 @@ const ContactSection = () => {
           </a>
           
           <a 
-            href="https://github.com/ricky" 
+            href="https://github.com/Ricky-Hacker001" 
             className="text-portfolio-lightest-slate hover:text-portfolio-teal transition-colors group"
             target="_blank"
             rel="noopener noreferrer"

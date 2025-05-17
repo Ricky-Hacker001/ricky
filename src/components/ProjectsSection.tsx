@@ -9,7 +9,7 @@ const projects = [
     description: "Developing an AI-powered humanoid robot to assist and guide visitors at the college reception, using a college-specific AI dataset for context-aware interaction.",
     tech: ["Python", "Raspberry Pi 4", "Arduino Mega", "Serial Comm", "Sensors", "Motors", "AI Dataset"],
     imageUrl: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    github: "#",
+    github: "https://github.com/Ricky-Hacker001",
     live: "",
     inProgress: true
   },
@@ -18,7 +18,7 @@ const projects = [
     description: "Built a real-time WiFi intrusion and object detection system using Raspberry Pi and cloud integration that detects suspicious network activity and physical intrusions.",
     tech: ["Raspberry Pi 4", "Python", "TP-Link Adapter", "MySQL", "Telegram API", "Ultrasonic Sensors", "OpenCV"],
     imageUrl: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    github: "https://github.com/username/wifi-security",
+    github: "https://github.com/Ricky-Hacker001",
     live: ""
   },
   {
@@ -26,7 +26,7 @@ const projects = [
     description: "Developed a complete HR management system for Noesis Publishing Services Pvt. Ltd. that automates employee records, attendance, and payroll.",
     tech: ["HTML", "CSS", "JavaScript", "PHP", "MySQL", "Auth System"],
     imageUrl: "https://images.unsplash.com/photo-1578091879915-33ee869e2cd7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    github: "",
+    github: "https://github.com/Ricky-Hacker001",
     live: "https://example-hrm.com"
   },
   {
@@ -34,7 +34,7 @@ const projects = [
     description: "A full-stack web application that allows students to share and access academic notes securely within a college environment.",
     tech: ["HTML", "CSS", "JavaScript", "PHP", "MySQL"],
     imageUrl: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
-    github: "https://github.com/username/student-notes",
+    github: "https://github.com/Ricky-Hacker001",
     live: ""
   }
 ];
@@ -119,7 +119,7 @@ const ProjectsSection = () => {
                 <div className="flex justify-between items-start mb-5">
                   <File size={28} className="text-portfolio-teal" />
                   <div className="flex gap-3">
-                    <a href="https://github.com/username/mini-projects" target="_blank" rel="noopener noreferrer" className="text-portfolio-lightest-slate hover:text-portfolio-teal transition-colors">
+                    <a href="https://github.com/Ricky-Hacker001" target="_blank" rel="noopener noreferrer" className="text-portfolio-lightest-slate hover:text-portfolio-teal transition-colors">
                       <Github size={18} />
                     </a>
                   </div>
@@ -139,7 +139,7 @@ const ProjectsSection = () => {
                 <div className="flex justify-between items-start mb-5">
                   <File size={28} className="text-portfolio-teal" />
                   <div className="flex gap-3">
-                    <a href="https://github.com/username/mini-projects" target="_blank" rel="noopener noreferrer" className="text-portfolio-lightest-slate hover:text-portfolio-teal transition-colors">
+                    <a href="https://github.com/Ricky-Hacker001" target="_blank" rel="noopener noreferrer" className="text-portfolio-lightest-slate hover:text-portfolio-teal transition-colors">
                       <Github size={18} />
                     </a>
                   </div>
@@ -160,7 +160,7 @@ const ProjectsSection = () => {
                 <div className="flex justify-between items-start mb-5">
                   <File size={28} className="text-portfolio-teal" />
                   <div className="flex gap-3">
-                    <a href="https://github.com/username/mini-projects" target="_blank" rel="noopener noreferrer" className="text-portfolio-lightest-slate hover:text-portfolio-teal transition-colors">
+                    <a href="https://github.com/Ricky-Hacker001" target="_blank" rel="noopener noreferrer" className="text-portfolio-lightest-slate hover:text-portfolio-teal transition-colors">
                       <Github size={18} />
                     </a>
                   </div>
