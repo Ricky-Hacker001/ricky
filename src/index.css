@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
@@ -100,13 +101,13 @@
 }
 
 .section-heading {
-  @apply flex items-center gap-2 text-2xl font-fira-code text-portfolio-lightest-slate mb-6;
+  @apply flex items-center gap-2 text-xl md:text-2xl font-fira-code text-portfolio-lightest-slate mb-6;
 }
 
 .section-heading::before {
   content: "0" counter(section) ".";
   counter-increment: section;
-  @apply text-portfolio-teal mr-2 font-fira-code text-xl;
+  @apply text-portfolio-teal mr-2 font-fira-code text-lg md:text-xl;
 }
 
 .section-heading::after {
@@ -145,4 +146,270 @@ body {
 
 .highlight {
   @apply text-portfolio-teal;
+}
+
+/* Hacker theme additions */
+.blinking-cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.glitch-text {
+  position: relative;
+  text-shadow: 0.05em 0 0 rgba(100, 255, 218, 0.3), -0.05em 0 0 rgba(255, 0, 0, 0.3);
+  animation: glitch 3s infinite;
+}
+
+@keyframes glitch {
+  0% {
+    text-shadow: 0.05em 0 0 rgba(100, 255, 218, 0.3), -0.05em 0 0 rgba(255, 0, 0, 0.3);
+  }
+  14% {
+    text-shadow: 0.05em 0 0 rgba(100, 255, 218, 0.3), -0.05em 0 0 rgba(255, 0, 0, 0.3);
+  }
+  15% {
+    text-shadow: -0.05em -0.025em 0 rgba(100, 255, 218, 0.3), 0.025em 0.025em 0 rgba(255, 0, 0, 0.3);
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 rgba(100, 255, 218, 0.3), 0.025em 0.025em 0 rgba(255, 0, 0, 0.3);
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 rgba(100, 255, 218, 0.3), 0.05em 0 0 rgba(255, 0, 0, 0.3);
+  }
+  99% {
+    text-shadow: 0.025em 0.05em 0 rgba(100, 255, 218, 0.3), 0.05em 0 0 rgba(255, 0, 0, 0.3);
+  }
+  100% {
+    text-shadow: 0.05em 0 0 rgba(100, 255, 218, 0.3), -0.05em 0 0 rgba(255, 0, 0, 0.3);
+  }
+}
+
+code {
+  @apply font-fira-code;
+}
+
+/* New animations */
+.typing-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #64ffda;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+  max-width: fit-content;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #64ffda }
+}
+
+.scan-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.scan-line::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: rgba(100, 255, 218, 0.3);
+  box-shadow: 0 0 10px #64ffda;
+  animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+  0% { top: -5%; }
+  100% { top: 105%; }
+}
+
+.text-scramble {
+  position: relative;
+  display: inline-block;
+}
+
+.text-scramble:hover::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #64ffda;
+  background: #0a192f;
+  clip-path: inset(0 calc(100% - var(--scramble-progress, 0%)) 0 0);
+  animation: text-scramble-animation 1s ease forwards;
+}
+
+@keyframes text-scramble-animation {
+  0% { --scramble-progress: 0%; }
+  100% { --scramble-progress: 100%; }
+}
+
+.hacker-gradient-text {
+  background: linear-gradient(90deg, #64ffda, #00d1ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.security-pulse {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(100, 255, 218, 0.8);
+  box-shadow: 0 0 10px #64ffda;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.5); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* Enhanced mobile responsiveness */
+@media (max-width: 640px) {
+  .section-heading {
+    @apply text-lg;
+  }
+  
+  .section-heading::before {
+    @apply text-base;
+  }
+  
+  .container {
+    @apply px-4;
+  }
+  
+  h1, h2, h3 {
+    @apply text-center;
+  }
+}
+
+/* Floating animation for IoT device cards */
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+/* Grid item hover effect */
+.grid-item-hover {
+  transition: all 0.3s ease;
+}
+
+.grid-item-hover:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Matrix text effect */
+.matrix-text {
+  color: #64ffda;
+  text-shadow: 0 0 5px #64ffda;
+  font-family: 'Fira Code', monospace;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* Cyber border animation */
+.cyber-border {
+  position: relative;
+}
+
+.cyber-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid transparent;
+  background: linear-gradient(45deg, #64ffda, transparent, #64ffda, transparent) border-box;
+  mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  animation: border-rotate 4s linear infinite;
+}
+
+@keyframes border-rotate {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 100%; }
+}
+
+/* Cyberpunk button */
+.cyber-button {
+  position: relative;
+  background: #112240;
+  color: #64ffda;
+  font-family: 'Fira Code', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: 2px solid #64ffda;
+  box-shadow: 0 0 10px rgba(100, 255, 218, 0.5);
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.cyber-button:hover {
+  background: rgba(100, 255, 218, 0.1);
+  box-shadow: 0 0 20px rgba(100, 255, 218, 0.8);
+}
+
+.cyber-button::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(transparent, rgba(100, 255, 218, 0.3), transparent);
+  transform: rotate(45deg);
+  transition: all 0.3s;
+  opacity: 0;
+}
+
+.cyber-button:hover::after {
+  animation: cyber-button-glow 1.5s ease-in-out;
+}
+
+@keyframes cyber-button-glow {
+  0% { left: -50%; opacity: 0; }
+  50% { opacity: 0.7; }
+  100% { left: 150%; opacity: 0; }
+}
+
+/* Device scanning animation */
+.device-scan {
+  position: relative;
+  overflow: hidden;
+}
+
+.device-scan::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(100, 255, 218, 0.2), transparent);
+  animation: device-scan 3s infinite;
+}
+
+@keyframes device-scan {
+  0% { left: -100%; }
+  100% { left: 200%; }
 }
