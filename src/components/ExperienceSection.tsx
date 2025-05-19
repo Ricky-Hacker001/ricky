@@ -41,6 +41,20 @@ const experiences = [
       "Created practical learning environments for hands-on experience with technical tools.",
       "Hosted a bug bounty event to enhance cybersecurity awareness among students."
     ],
+  },
+  {
+    id: "intern",
+    title: "Strategic and Data Analyst Intern",
+    company: "Elevate Ecosystem Private Limited",
+    location: "Offline",
+    date: "May 2025 - Present",
+    bullets: [
+      "Conducted strategic analysis and data interpretation for real-time projects.",
+      "Developed insights to optimize business decisions based on data-driven methodologies.",
+      "Collaborated with professionals to streamline analytical workflows and enhance reporting.",
+      "Gained practical exposure to industry-level data analytics and strategic planning.",
+      "Expressed gratitude to mentors for guidance in securing this opportunity."
+    ],
   }
 ];
 
@@ -61,7 +75,7 @@ const ExperienceSection = () => {
     <section id="experience" className="py-16 px-4 md:px-8 lg:px-16">
       <div className="container mx-auto">
         <h2 className="section-heading">Where I've Worked</h2>
-        
+
         {/* Desktop View */}
         <div className="hidden md:block mt-6">
           <Tabs defaultValue="web-dev" className="w-full">
@@ -76,7 +90,7 @@ const ExperienceSection = () => {
                 </TabsTrigger>
               ))}
             </TabsList>
-            
+
             {experiences.map((exp) => (
               <TabsContent key={exp.id} value={exp.id} className="animate-fade-in-down">
                 <div className="mb-2">
@@ -87,7 +101,7 @@ const ExperienceSection = () => {
                     {exp.date} | {exp.location}
                   </p>
                 </div>
-                
+
                 <ul className="space-y-2 max-w-2xl text-sm">
                   {exp.bullets.map((bullet, index) => (
                     <li key={index} className="flex">
