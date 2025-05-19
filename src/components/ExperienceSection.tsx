@@ -46,7 +46,7 @@ const experiences = [
     id: "intern",
     title: "Strategic and Data Analyst Intern",
     company: "Elevate Ecosystem Private Limited",
-    location: "Offline",
+    location: "Indiranagar, Bangalore",
     date: "May 2025 - Present",
     bullets: [
       "Conducted strategic analysis and data interpretation for real-time projects.",
