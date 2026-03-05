@@ -36,7 +36,15 @@ const projects = [
     imageUrl: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
     github: "https://github.com/Ricky-Hacker001",
     live: ""
-  }
+  },
+  {
+  title: "Open Cobra | All-in-One Cybersecurity Toolkit",
+  description: "Developed a multi-functional cybersecurity toolkit in Python with modules for vulnerability scanning, security testing, and automated reporting to assist in identifying and analyzing system vulnerabilities.",
+  tech: ["Python", "Cybersecurity", "Vulnerability Scanning", "Automation", "CLI Tools"],
+  imageUrl: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=2070&q=80",
+  github: "https://github.com/Ricky-Hacker001/open_cobra",
+  live: "",
+}
 ];
 
 const ProjectsSection = () => {
@@ -80,11 +88,11 @@ const ProjectsSection = () => {
                     )}
                   </div>
                   
-                  {project.inProgress && (
+                  {/* {project.inProgress && (
                     <div className="absolute top-0 left-0 bg-portfolio-teal text-portfolio-navy px-2 py-1 text-xs font-semibold">
                       In Progress
                     </div>
-                  )}
+                  )} */}
                 </div>
                 
                 <CardContent className="p-6">

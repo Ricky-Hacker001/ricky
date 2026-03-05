@@ -102,6 +102,95 @@ const EducationSection = () => {
             
             <div className="space-y-6">
               <div className="group bg-portfolio-light-navy p-6 rounded-lg border border-portfolio-lightest-navy hover:border-portfolio-teal transition-colors duration-300">
+  <div className="flex items-center gap-4 mb-4">
+    <div className="bg-portfolio-teal-tint p-3 rounded-full group-hover:animate-pulse">
+      <Bug size={24} className="text-portfolio-teal" />
+    </div>
+
+    <div className="font-fira-code">
+      <h4 className="text-portfolio-lightest-slate text-lg font-medium">
+        Security Vulnerability Discovery <span className="text-portfolio-teal">|</span> Responsible Disclosure
+      </h4>
+      <p className="text-xs text-portfolio-slate mt-1">$ domain: cybersecurity-research</p>
+    </div>
+  </div>
+
+  <p className="text-portfolio-slate">
+    Identified and responsibly disclosed a misconfigured 
+    <span className="text-portfolio-teal"> DMARC policy</span> vulnerability that could allow 
+    <span className="text-portfolio-teal"> email spoofing attacks</span>, improving organizational email security.
+  </p>
+
+  <p className="text-portfolio-slate mt-2">
+    Discovered a <span className="text-portfolio-teal">PII exposure vulnerability</span> on a university portal using 
+    <span className="text-portfolio-teal"> Google Dorking techniques</span> and reported it responsibly to enhance data protection.
+  </p>
+
+  <div className="mt-2">
+    <span className="inline-block bg-portfolio-navy px-2 py-1 rounded text-xs text-portfolio-teal mr-2 mb-2">DMARC</span>
+    <span className="inline-block bg-portfolio-navy px-2 py-1 rounded text-xs text-portfolio-teal mr-2 mb-2">Email Security</span>
+    <span className="inline-block bg-portfolio-navy px-2 py-1 rounded text-xs text-portfolio-teal mr-2 mb-2">Google Dorking</span>
+    <span className="inline-block bg-portfolio-navy px-2 py-1 rounded text-xs text-portfolio-teal mb-2">PII Protection</span>
+  </div>
+</div>
+              <div className="group bg-portfolio-light-navy p-6 rounded-lg border border-portfolio-lightest-navy hover:border-portfolio-teal transition-colors duration-300">
+  <div className="flex items-center gap-4 mb-4">
+    <div className="bg-portfolio-teal-tint p-3 rounded-full group-hover:animate-pulse">
+      <Shield size={24} className="text-portfolio-teal" />
+    </div>
+
+    <div className="font-fira-code">
+      <h4 className="text-portfolio-lightest-slate text-lg font-medium">
+        Copyright Granted <span className="text-portfolio-teal">|</span> Cybersecurity Toolkit
+      </h4>
+      <p className="text-xs text-portfolio-slate mt-1">$ date: 2025</p>
+    </div>
+  </div>
+
+  <p className="text-portfolio-slate">
+    Received official <span className="text-portfolio-teal">copyright protection</span> for a 
+    <span className="text-portfolio-teal"> blockchain-based cybersecurity toolkit</span> designed for 
+    offensive security testing, defensive monitoring, and tamper-proof secure logging.
+  </p>
+
+  <div className="mt-2">
+    <span className="inline-block bg-portfolio-navy px-2 py-1 rounded text-xs text-portfolio-teal mr-2 mb-2">Blockchain</span>
+    <span className="inline-block bg-portfolio-navy px-2 py-1 rounded text-xs text-portfolio-teal mr-2 mb-2">Cybersecurity</span>
+    <span className="inline-block bg-portfolio-navy px-2 py-1 rounded text-xs text-portfolio-teal mr-2 mb-2">Secure Logging</span>
+    <span className="inline-block bg-portfolio-navy px-2 py-1 rounded text-xs text-portfolio-teal mb-2">Security Toolkit</span>
+  </div>
+</div>
+              <div className="group bg-portfolio-light-navy p-6 rounded-lg border border-portfolio-lightest-navy hover:border-portfolio-teal transition-colors duration-300">
+  <div className="flex items-center gap-4 mb-4">
+    <div className="bg-portfolio-teal-tint p-3 rounded-full group-hover:animate-pulse">
+      <Award size={24} className="text-portfolio-teal" />
+    </div>
+    <div className="font-fira-code">
+      <h4 className="text-portfolio-lightest-slate text-lg font-medium">
+        1st Place <span className="text-portfolio-teal">|</span> Hack with GDG Season-03
+      </h4>
+      <p className="text-xs text-portfolio-slate mt-1">$ date: 2025-09</p>
+    </div>
+  </div>
+
+  <p className="text-portfolio-slate">
+    My team <span className="text-portfolio-teal">NuetreX.io</span> secured 
+    <span className="text-portfolio-teal"> 1st Place in the Requestly Track</span> at 
+    Hack with GDG Season-03 hosted by GDG KSRCE. We built and refined our solution 
+    during an intense 36-hour hackathon and won the <span className="text-portfolio-teal">$100 prize</span>.
+  </p>
+
+  <p className="text-xs text-portfolio-slate mt-2">
+    Team: PrabhaVathi S, Dharmeswaran, Suriyan TR
+  </p>
+
+  <div className="mt-2">
+    <span className="inline-block bg-portfolio-navy px-2 py-1 rounded text-xs text-portfolio-teal mr-2 mb-2">Web Security</span>
+    <span className="inline-block bg-portfolio-navy px-2 py-1 rounded text-xs text-portfolio-teal mr-2 mb-2">Web Development</span>
+    <span className="inline-block bg-portfolio-navy px-2 py-1 rounded text-xs text-portfolio-teal mb-2">Requestly</span>
+  </div>
+</div>
+              <div className="group bg-portfolio-light-navy p-6 rounded-lg border border-portfolio-lightest-navy hover:border-portfolio-teal transition-colors duration-300">
                 <div className="flex items-center gap-4 mb-4">
                   <div className="bg-portfolio-teal-tint p-3 rounded-full group-hover:animate-pulse">
                     <Award size={24} className="text-portfolio-teal" />

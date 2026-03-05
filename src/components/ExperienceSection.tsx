@@ -33,7 +33,7 @@ const experiences = [
     title: "Club Head",
     company: "Scripters | Christ University",
     location: "School of Technology",
-    date: "July 2024 - Present",
+    date: "July 2024 - July 2025",
     bullets: [
       "Lead a technical club focused on teaching automation and networking concepts to students.",
       "Organized workshops on scripting and advanced networking techniques.",
@@ -47,7 +47,7 @@ const experiences = [
     title: "Strategic and Data Analyst Intern",
     company: "Elevate Ecosystem Private Limited",
     location: "Indiranagar, Bangalore",
-    date: "May 2025 - Present",
+    date: "May 2025(One Month)",
     bullets: [
       "Conducted strategic analysis and data interpretation for real-time projects.",
       "Developed insights to optimize business decisions based on data-driven methodologies.",
@@ -55,7 +55,20 @@ const experiences = [
       "Gained practical exposure to industry-level data analytics and strategic planning.",
       "Expressed gratitude to mentors for guidance in securing this opportunity."
     ],
-  }
+  },
+  {
+  id: "soc-analyst",
+  title: "SOC Analyst",
+  company: "Terraeagle",
+  location: "Remote",
+  date: "January 2026 - Present",
+  bullets: [
+    "Monitoring and analyzing security alerts and incidents to detect potential cyber threats.",
+    "Investigating suspicious activities using SIEM tools and log analysis.",
+    "Assisting in incident response and threat mitigation to strengthen organizational security posture.",
+    "Documenting security findings and collaborating with the security team to improve detection strategies."
+  ],
+}
 ];
 
 const ExperienceSection = () => {
