@@ -145,7 +145,7 @@ const ContactSection = () => {
             <span>ricky.nuetrex@gmail.com</span>
           </a>
           
-          <a 
+          {/* <a 
             href="tel:+917418922390" 
             className="flex items-center gap-2 text-portfolio-lightest-slate hover:text-portfolio-teal transition-colors group"
           >
@@ -153,7 +153,7 @@ const ContactSection = () => {
               <Phone size={20} />
             </div>
             <span>+91 7418922390</span>
-          </a>
+          </a> */}
         </div>
         
         <div className="mt-16 flex justify-center gap-8">
