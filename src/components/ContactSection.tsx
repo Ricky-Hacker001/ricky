@@ -136,23 +136,23 @@ const ContactSection = () => {
         
         <div className="flex flex-wrap justify-center gap-6 mb-12">
           <a 
-            href="mailto:ricky.nuetrex@gmail.com" 
+            href="mailto:ricky.devsec@gmail.com" 
             className="flex items-center gap-2 text-portfolio-lightest-slate hover:text-portfolio-teal transition-colors group"
           >
             <div className="bg-portfolio-light-navy p-2 rounded-full group-hover:animate-pulse">
               <Mail size={20} />
             </div>
-            <span>ricky.nuetrex@gmail.com</span>
+            <span>ricky.devsec@gmail.com</span>
           </a>
           
           {/* <a 
-            href="tel:+917418922390" 
+            href="tel:+91" 
             className="flex items-center gap-2 text-portfolio-lightest-slate hover:text-portfolio-teal transition-colors group"
           >
             <div className="bg-portfolio-light-navy p-2 rounded-full group-hover:animate-pulse">
               <Phone size={20} />
             </div>
-            <span>+91 7418922390</span>
+            <span>+91 </span>
           </a> */}
         </div>
         
