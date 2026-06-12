@@ -61,7 +61,7 @@ const experiences = [
 title: "SOC Analyst",
 company: "Terraeagle",
 location: "Remote",
-date: "January 2026 - Present",
+date: "January 2026 - May 2026",
 bullets: [
   "Monitored and triaged security telemetry using Grafana, leveraging Copilot to investigate critical alerts and asset impacts.",
   "Documented detailed technical evidence and incident resolutions within Copilot to ensure comprehensive audit trails.",
