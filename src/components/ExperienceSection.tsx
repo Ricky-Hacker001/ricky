@@ -58,16 +58,16 @@ const experiences = [
   },
   {
   id: "soc-analyst",
-  title: "SOC Analyst",
-  company: "Terraeagle",
-  location: "Remote",
-  date: "January 2026 - Present",
-  bullets: [
-    "Monitoring and analyzing security alerts and incidents to detect potential cyber threats.",
-    "Investigating suspicious activities using SIEM tools and log analysis.",
-    "Assisting in incident response and threat mitigation to strengthen organizational security posture.",
-    "Documenting security findings and collaborating with the security team to improve detection strategies."
-  ],
+title: "SOC Analyst",
+company: "Terraeagle",
+location: "Remote",
+date: "January 2026 - Present",
+bullets: [
+  "Monitored and triaged security telemetry using Grafana, leveraging Copilot to investigate critical alerts and asset impacts.",
+  "Documented detailed technical evidence and incident resolutions within Copilot to ensure comprehensive audit trails.",
+  "Investigated suspicious activities and potential cyber threats using SIEM tools, log analysis, and automated insights.",
+  "Assisted in incident response, threat mitigation, and documentation of security findings to strengthen organizational security posture."
+],
 }
 ];
 

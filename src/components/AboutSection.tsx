@@ -6,7 +6,7 @@ const AboutSection = () => {
     "Python", "JavaScript", "HTML5", "CSS3", "PHP",
     "Cybersecurity", "Ethical Hacking", "Vulnerability Assessment",
     "Arduino", "Raspberry Pi", "RFID Systems",
-    "Networking Protocols", "SQL", "Git"
+    "Networking Protocols", "SQL", "Git", "Grafana", "Wireshark", "Metasploit", "Burp Suite", "Co-Pilot"
   ];
 
   const specializations = [
