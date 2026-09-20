@@ -43,7 +43,7 @@ const Index = () => (
             <a className="primary-btn" href="#projects">Explore work <ArrowDownRight size={17}/></a>
             <a className="ghost-btn" href="https://github.com/Ricky-Hacker001" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={17}/></a>
           </div>
-          <div className="signal-row"><span><span className="mini-dot"/> Chennai, India</span><span>BUILD STATUS: ONLINE</span><span>LOCATION: KRISHNAGIRI, TN</span></div>
+          <div className="signal-row"><span><span className="mini-dot"/> Chennai, India</span><span>BUILD STATUS: ONLINE</span><span>LOCATION: KRISHNAGIRI, TAMIL NADU</span></div>
         </div>
         <motion.div className="hero-console" initial={{opacity:0,y:24,rotate:1}} animate={{opacity:1,y:0,rotate:0}} transition={{duration:.8}}>
           <div className="console-top"><span><i/><i/><i/></span><span>ricky@lab:~</span><span>v3.0</span></div>
@@ -83,11 +83,7 @@ const Index = () => (
         <div className="project-grid">{projects.map(([code,title,type,copy,tags,repo]) => <motion.a key={code} href={repo} target="_blank" rel="noreferrer" className="project-card" whileHover={{y:-7}}>
           <div className="project-meta"><span>{code}</span><ExternalLink size={15}/></div><div className="project-type">{type}</div><h3>{title}</h3><p>{copy}</p><div className="tag-row">{tags.map(tag=><span key={tag}>{tag}</span>)}</div>
         </motion.a>)}</div>
-      </section>
-
-
-      <section id="achievements" className="content-section">
-        <SectionHeading index="04" eyebrow="recognition" title="Proof that the side quests shipped." description="Competitions, responsible disclosures and intellectual property from the earlier portfolio." />
+      </section><section id="achievements" className="content-section recognition-section"><SectionHeading index="04" eyebrow="recognition" title="Proof that the side quests shipped." description="Competitions, responsible disclosures and intellectual property from the earlier portfolio." />
         <div className="achievement-grid">
           <article className="achievement-card"><span>01</span><div><h3>1st Place — Hack with GDG Season-03</h3><p>NuetreX.io secured 1st Place in the Requestly Track at Hack with GDG Season-03, a 36-hour hackathon hosted by GDG KSRCE.</p><small>SEPT 2025 · REQUESTLY · WEB SECURITY</small></div></article>
           <article className="achievement-card"><span>02</span><div><h3>1st Place — IoT Hackathon</h3><p>Ranked 1st among participating teams with an IoT-based real-world solution focused on home automation and security.</p><small>MAR 2025 · IOT · ARDUINO · RASPBERRY PI</small></div></article>
