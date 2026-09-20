@@ -4,12 +4,12 @@ import CyberBackground from "../components/CyberBackground";
 import SectionHeading from "../components/SectionHeading";
 
 const projects = [
-  ["01","Koottali","Linux × Android ecosystem","A local-first companion platform exploring seamless copy, paste, notifications and device handoff between Linux and Android.",["Linux","Android","Networking","Open Source"]],
-  ["02","Open_Cobra","Security research toolkit","A modular security toolkit combining passive recon, vulnerability checks, hashing utilities and security research workflows.",["Python","Recon","Web Security","Research"]],
-  ["03","Cake Delight","Cloud-native microservices","A distributed application built around service boundaries, an API gateway, RabbitMQ events, MongoDB and container orchestration.",["Node.js","Docker","Kubernetes","RabbitMQ"]],
-  ["04","GhostChip","Wireless security hardware","An ESP32-based experimental platform for Wi-Fi and Bluetooth analysis, built as a hands-on hardware security lab.",["ESP32","BLE","Wi-Fi","Embedded"]],
-  ["05","Stock Predictor","ML research application","A Flask web app using time-series modeling, market data and an interactive frontend to explore forecasting workflows.",["Flask","LSTM","Keras","Chart.js"]],
-  ["06","Home Security Lab","Self-hosted infrastructure","A Raspberry Pi-centered lab with monitoring, honeypot experiments, DNS filtering and observability.",["Raspberry Pi","Wazuh","Grafana","Docker"]]
+  ["01","Koottali","Linux × Android ecosystem","A local-first companion platform exploring seamless copy, paste, notifications and device handoff between Linux and Android.",["Linux","Android","Networking","Open Source"],"https://github.com/Ricky-Hacker001/ricky"],
+  ["02","Open_Cobra","Security research toolkit","A modular security toolkit combining passive recon, vulnerability checks, hashing utilities and security research workflows.",["Python","Recon","Web Security","Research"],"https://github.com/Ricky-Hacker001/ricky"],
+  ["03","Cake Delight","Cloud-native microservices","A distributed application built around service boundaries, an API gateway, RabbitMQ events, MongoDB and container orchestration.",["Node.js","Docker","Kubernetes","RabbitMQ"],"https://github.com/Ricky-Hacker001/ricky"],
+  ["04","LeakWatch","Data leak monitoring","A security-focused project for monitoring exposed data and turning leak intelligence into actionable security visibility.",["Security","Monitoring","Python","Threat Intel"],"https://github.com/Ricky-Hacker001/leakwatch"],
+  ["05","Gold App Backend","Backend engineering","Backend services for a gold-focused application, built around API design, business logic and persistent data workflows.",["Backend","API","Node.js","Database"],"https://github.com/Ricky-Hacker001/gold-app-backend"],
+  ["06","Gold App Frontend","Product interface","The frontend application for the Gold App, connecting a responsive user experience to its backend services.",["Frontend","React","API","UI"],"https://github.com/Ricky-Hacker001/gold-app-frontend"]
 ] as const;
 
 const skills = [
@@ -21,7 +21,7 @@ const skills = [
   ["Build","Rapid prototyping / tooling / side quests",TerminalSquare]
 ] as const;
 
-const nav = [["About","about"],["Experience","experience"],["Projects","projects"],["Lab","lab"],["Contact","contact"]];
+const nav = [["About","about"],["Experience","experience"],["Projects","projects"],["Achievements","achievements"],["Lab","lab"],["Contact","contact"]];
 
 const Index = () => (
   <div className="site-shell">
@@ -43,7 +43,7 @@ const Index = () => (
             <a className="primary-btn" href="#projects">Explore work <ArrowDownRight size={17}/></a>
             <a className="ghost-btn" href="https://github.com/Ricky-Hacker001" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={17}/></a>
           </div>
-          <div className="signal-row"><span><span className="mini-dot"/> Chennai, India</span><span>BUILD STATUS: ONLINE</span><span>SECURITY MODE: ACTIVE</span></div>
+          <div className="signal-row"><span><span className="mini-dot"/> Chennai, India</span><span>BUILD STATUS: ONLINE</span><span>LOCATION: KRISHNAGIRI, TN</span></div>
         </div>
         <motion.div className="hero-console" initial={{opacity:0,y:24,rotate:1}} animate={{opacity:1,y:0,rotate:0}} transition={{duration:.8}}>
           <div className="console-top"><span><i/><i/><i/></span><span>ricky@lab:~</span><span>v3.0</span></div>
@@ -80,13 +80,25 @@ const Index = () => (
 
       <section id="projects" className="content-section">
         <SectionHeading index="03" eyebrow="selected builds" title="Projects from the lab, not the template." description="A few things that represent how I think: useful, experimental and slightly obsessive."/>
-        <div className="project-grid">{projects.map(([code,title,type,copy,tags]) => <motion.a key={code} href="https://github.com/Ricky-Hacker001" target="_blank" rel="noreferrer" className="project-card" whileHover={{y:-7}}>
+        <div className="project-grid">{projects.map(([code,title,type,copy,tags,repo]) => <motion.a key={code} href={repo} target="_blank" rel="noreferrer" className="project-card" whileHover={{y:-7}}>
           <div className="project-meta"><span>{code}</span><ExternalLink size={15}/></div><div className="project-type">{type}</div><h3>{title}</h3><p>{copy}</p><div className="tag-row">{tags.map(tag=><span key={tag}>{tag}</span>)}</div>
         </motion.a>)}</div>
       </section>
 
-      <section id="lab" className="content-section lab-grid">
-        <div><SectionHeading index="04" eyebrow="toolchain" title="The stack behind the side quests."/>
+
+      <section id="achievements" className="content-section">
+        <SectionHeading index="04" eyebrow="recognition" title="Proof that the side quests shipped." description="Competitions, responsible disclosures and intellectual property from the earlier portfolio." />
+        <div className="achievement-grid">
+          <article className="achievement-card"><span>01</span><div><h3>1st Place — Hack with GDG Season-03</h3><p>NuetreX.io secured 1st Place in the Requestly Track at Hack with GDG Season-03, a 36-hour hackathon hosted by GDG KSRCE.</p><small>SEPT 2025 · REQUESTLY · WEB SECURITY</small></div></article>
+          <article className="achievement-card"><span>02</span><div><h3>1st Place — IoT Hackathon</h3><p>Ranked 1st among participating teams with an IoT-based real-world solution focused on home automation and security.</p><small>MAR 2025 · IOT · ARDUINO · RASPBERRY PI</small></div></article>
+          <article className="achievement-card"><span>03</span><div><h3>1st Place — GenAI Hackathon</h3><p>Built an AI-powered cybersecurity threat detection system at K.S.R. College of Engineering.</p><small>APR 2025 · AI/ML · PYTHON · TENSORFLOW</small></div></article>
+          <article className="achievement-card"><span>04</span><div><h3>4th Place — Smart India Hackathon</h3><p>Ranked among 40+ teams with a real-world municipal waste-management solution.</p><small>OCT 2024 · IOT · WEB · DATA ANALYTICS</small></div></article>
+          <article className="achievement-card"><span>05</span><div><h3>Responsible Security Disclosures</h3><p>Identified a misconfigured DMARC policy and a PII exposure issue and reported both responsibly to improve security and data protection.</p><small>DMARC · EMAIL SECURITY · GOOGLE DORKING</small></div></article>
+          <article className="achievement-card copyright-card"><span>©</span><div><h3>Copyright Registered — Offensive and Defensive Cyber Hacking Alert Using Blockchain</h3><p>Official copyright registration for a Python cybersecurity toolkit covering offensive testing, defensive monitoring, blockchain-based logging and self-healing mechanisms.</p><small>APPLICATION SW-38224/2025-CO · CERTIFICATE SW-2026022251 · ROC 29 JAN 2026</small></div></article>
+        </div>
+      </section>
+\n      <section id="lab" className="content-section lab-grid">
+        <div><SectionHeading index="05" eyebrow="toolchain" title="The stack behind the side quests."/>
           <div className="skills-grid">{skills.map(([title,copy,Icon])=><div className="skill-card" key={title}><Icon size={19}/><div><h3>{title}</h3><p>{copy}</p></div></div>)}</div>
         </div>
         <div className="lab-terminal"><div className="terminal-label"><span/> LIVE LAB</div>
@@ -97,7 +109,7 @@ const Index = () => (
 
       <section id="contact" className="contact-section"><div className="contact-card">
         <div><div className="section-kicker"><span>05</span> open channel</div><h2>Have a system worth building?</h2><p>Drop a message. Security research, engineering, collaborations and interesting problems are welcome.</p></div>
-        <div className="contact-actions"><a href="mailto:ricky.devsec@gmail.com" className="primary-btn"><Mail size={17}/> Email me</a><a href="https://www.linkedin.com/in/ricky-f-btech/" target="_blank" rel="noreferrer" className="ghost-btn"><Linkedin size={17}/> LinkedIn</a><a href="https://github.com/Ricky-Hacker001" target="_blank" rel="noreferrer" className="ghost-btn"><Github size={17}/> GitHub</a></div>
+        <div className="contact-actions"><a href="mailto:ricky.devsec@gmail.com" className="primary-btn"><Mail size={17}/> Email me</a><a href="https://www.instagram.com/ricky.techie/" target="_blank" rel="noreferrer" className="ghost-btn"><span>◎</span> Instagram</a><a href="https://www.linkedin.com/in/ricky-f-btech/" target="_blank" rel="noreferrer" className="ghost-btn"><Linkedin size={17}/> LinkedIn</a><a href="https://github.com/Ricky-Hacker001" target="_blank" rel="noreferrer" className="ghost-btn"><Github size={17}/> GitHub</a></div>
       </div></section>
     </main>
     <footer className="footer"><span>© {new Date().getFullYear()} Ricky. Built in public.</span><span>NO TEMPLATE. JUST SIDE QUESTS.</span></footer>
