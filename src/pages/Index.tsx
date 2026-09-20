@@ -25,7 +25,21 @@ const skills = [
 
 const nav = [["About","about"],["Experience","experience"],["Projects","projects"],["Achievements","achievements"],["Lab","lab"],["Contact","contact"]];
 
-const Index = () => {\n  useEffect(() => {\n    const move = (event: PointerEvent) => {\n      const x = (event.clientX / window.innerWidth - 0.5) * 2;\n      const y = (event.clientY / window.innerHeight - 0.5) * 2;\n      document.documentElement.style.setProperty("--rx", `${(-y * 2.2).toFixed(2)}deg`);\n      document.documentElement.style.setProperty("--ry", `${(x * 2.2).toFixed(2)}deg`);\n      document.documentElement.style.setProperty("--px", `${(x * 10).toFixed(2)}px`);\n      document.documentElement.style.setProperty("--py", `${(y * 10).toFixed(2)}px`);\n    };\n    window.addEventListener("pointermove", move, { passive: true });\n    return () => window.removeEventListener("pointermove", move);\n  }, []);\n\n  return (
+const Index = () => {
+  useEffect(() => {
+    const move = (event: PointerEvent) => {
+      const x = (event.clientX / window.innerWidth - 0.5) * 2;
+      const y = (event.clientY / window.innerHeight - 0.5) * 2;
+      document.documentElement.style.setProperty("--rx", `${(-y * 2.2).toFixed(2)}deg`);
+      document.documentElement.style.setProperty("--ry", `${(x * 2.2).toFixed(2)}deg`);
+      document.documentElement.style.setProperty("--px", `${(x * 10).toFixed(2)}px`);
+      document.documentElement.style.setProperty("--py", `${(y * 10).toFixed(2)}px`);
+    };
+    window.addEventListener("pointermove", move, { passive: true });
+    return () => window.removeEventListener("pointermove", move);
+  }, []);
+
+  return (
   <div className="site-shell">
     <CyberBackground />
     <div className="noise-layer" />
