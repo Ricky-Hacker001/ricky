@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowDownRight, ArrowUpRight, Github, Linkedin, Mail, ShieldCheck, TerminalSquare, Cpu, Radio, Code2, Boxes, ExternalLink } from "lucide-react";
 import CyberBackground from "../components/CyberBackground";
 import SectionHeading from "../components/SectionHeading";
+import ExperienceSection from "../components/ExperienceSection";
 
 const projects = [
   ["01","Koottali","Linux × Android ecosystem","A local-first companion platform exploring seamless copy, paste, notifications and device handoff between Linux and Android.",["Linux","Android","Networking","Open Source"],"https://github.com/Ricky-Hacker001/ricky"],
@@ -43,7 +44,7 @@ const Index = () => (
             <a className="primary-btn" href="#projects">Explore work <ArrowDownRight size={17}/></a>
             <a className="ghost-btn" href="https://github.com/Ricky-Hacker001" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={17}/></a>
           </div>
-          <div className="signal-row"><span><span className="mini-dot"/> Chennai, India</span><span>BUILD STATUS: ONLINE</span><span>LOCATION: KRISHNAGIRI, TAMIL NADU</span></div>
+          <div className="signal-row"><span><span className="mini-dot"/> KRISHNAGIRI, TAMIL NADU</span><span>BUILD STATUS: ONLINE</span><span>SECURITY MODE: ACTIVE</span></div>
         </div>
         <motion.div className="hero-console" initial={{opacity:0,y:24,rotate:1}} animate={{opacity:1,y:0,rotate:0}} transition={{duration:.8}}>
           <div className="console-top"><span><i/><i/><i/></span><span>ricky@lab:~</span><span>v3.0</span></div>
@@ -69,14 +70,7 @@ const Index = () => (
         </div>
       </section>
 
-      <section id="experience" className="content-section">
-        <SectionHeading index="02" eyebrow="trajectory" title="Shipping, learning, then shipping again." description="A compact timeline of the environments where I have been building real systems."/>
-        <div className="timeline">
-          <article><span className="timeline-mark">NOW</span><div><h3>Cloud Native Microservice Engineer <em>@ Accenture</em></h3><p>Java, Spring, Node.js, Docker, Kubernetes and service-oriented architecture.</p></div></article>
-          <article><span className="timeline-mark">2026</span><div><h3>SOC & Security Research</h3><p>Hands-on work around monitoring, threat hunting, vulnerability research and self-hosted security labs.</p></div></article>
-          <article><span className="timeline-mark">2025</span><div><h3>Strategic & Data / Web Engineering</h3><p>Built web platforms, data workflows and product prototypes across internships and hackathon projects.</p></div></article>
-        </div>
-      </section>
+            <ExperienceSection />
 
       <section id="projects" className="content-section">
         <SectionHeading index="03" eyebrow="selected builds" title="Projects from the lab, not the template." description="A few things that represent how I think: useful, experimental and slightly obsessive."/>
@@ -93,9 +87,10 @@ const Index = () => (
           <article className="achievement-card copyright-card"><span>©</span><div><h3>Copyright Registered — Offensive and Defensive Cyber Hacking Alert Using Blockchain</h3><p>Official copyright registration for a Python cybersecurity toolkit covering offensive testing, defensive monitoring, blockchain-based logging and self-healing mechanisms.</p><small>APPLICATION SW-38224/2025-CO · CERTIFICATE SW-2026022251 · ROC 29 JAN 2026</small></div></article>
         </div>
       </section>
-\n      <section id="lab" className="content-section lab-grid">
+
+<section id="lab" className="content-section lab-grid">
         <div><SectionHeading index="05" eyebrow="toolchain" title="The stack behind the side quests."/>
-          <div className="skills-grid">{skills.map(([title,copy,Icon])=><div className="skill-card" key={title}><Icon size={19}/><div><h3>{title}</h3><p>{copy}</p></div></div>)}</div>
+          <div className="skills-grid"{skills.map(([title,copy,Icon])=><div className="skill-card" key={title}><Icon size={19}/><div><h3>{title}</h3><p>{copy}</p></div></div>)}</div>
         </div>
         <div className="lab-terminal"><div className="terminal-label"><span/> LIVE LAB</div>
           <div className="lab-line"><span>01</span> ping localhost</div><div className="lab-line"><span>02</span> system → <b>secure</b></div><div className="lab-line"><span>03</span> services → <b>12 online</b></div><div className="lab-line"><span>04</span> devices → <b>07 connected</b></div><div className="lab-line"><span>05</span> caffeine → <b>∞</b></div><div className="lab-line"><span>06</span> next_side_quest → <b>loading...</b></div>
