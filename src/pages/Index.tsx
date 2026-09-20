@@ -1,209 +1,107 @@
+import { motion } from "framer-motion";
+import { ArrowDownRight, ArrowUpRight, Github, Linkedin, Mail, ShieldCheck, TerminalSquare, Cpu, Radio, Code2, Boxes, ExternalLink } from "lucide-react";
+import CyberBackground from "../components/CyberBackground";
+import SectionHeading from "../components/SectionHeading";
 
-import React, { useEffect } from 'react';
-import Navbar from '../components/Navbar';
-import HeroSection from '../components/HeroSection';
-import AboutSection from '../components/AboutSection';
-import ExperienceSection from '../components/ExperienceSection';
-import ProjectsSection from '../components/ProjectsSection';
-import EducationSection from '../components/EducationSection';
-import ContactSection from '../components/ContactSection';
-import Footer from '../components/Footer';
+const projects = [
+  ["01","Koottali","Linux × Android ecosystem","A local-first companion platform exploring seamless copy, paste, notifications and device handoff between Linux and Android.",["Linux","Android","Networking","Open Source"]],
+  ["02","Open_Cobra","Security research toolkit","A modular security toolkit combining passive recon, vulnerability checks, hashing utilities and security research workflows.",["Python","Recon","Web Security","Research"]],
+  ["03","Cake Delight","Cloud-native microservices","A distributed application built around service boundaries, an API gateway, RabbitMQ events, MongoDB and container orchestration.",["Node.js","Docker","Kubernetes","RabbitMQ"]],
+  ["04","GhostChip","Wireless security hardware","An ESP32-based experimental platform for Wi-Fi and Bluetooth analysis, built as a hands-on hardware security lab.",["ESP32","BLE","Wi-Fi","Embedded"]],
+  ["05","Stock Predictor","ML research application","A Flask web app using time-series modeling, market data and an interactive frontend to explore forecasting workflows.",["Flask","LSTM","Keras","Chart.js"]],
+  ["06","Home Security Lab","Self-hosted infrastructure","A Raspberry Pi-centered lab with monitoring, honeypot experiments, DNS filtering and observability.",["Raspberry Pi","Wazuh","Grafana","Docker"]]
+] as const;
 
-const Index = () => {
-  useEffect(() => {
-    document.title = "Ricky - Cybersecurity & IoT Portfolio";
-    
-    // Create matrix canvas
-    const matrixCanvas = document.createElement('canvas');
-    matrixCanvas.width = window.innerWidth;
-    matrixCanvas.height = window.innerHeight;
-    matrixCanvas.style.position = 'fixed';
-    matrixCanvas.style.top = '0';
-    matrixCanvas.style.left = '0';
-    matrixCanvas.style.zIndex = '-1';
-    matrixCanvas.style.opacity = '0.07'; // Very subtle effect
-    document.body.appendChild(matrixCanvas);
+const skills = [
+  ["Security","VAPT / Web Security / SOC / Threat Hunting",ShieldCheck],
+  ["Engineering","React / Node.js / Java / Python / APIs",Code2],
+  ["Cloud","Docker / Kubernetes / CI/CD / AWS",Boxes],
+  ["Hardware","ESP32 / Raspberry Pi / IoT / Wireless",Cpu],
+  ["Networks","TCP/IP / Linux / Routing / Lab Automation",Radio],
+  ["Build","Rapid prototyping / tooling / side quests",TerminalSquare]
+] as const;
 
-    const matrixContext = matrixCanvas.getContext('2d');
-    const fontSize = 12;
-    const columns = Math.floor(matrixCanvas.width / fontSize);
-    
-    const drops: number[] = [];
-    for (let i = 0; i < columns; i++) {
-      drops[i] = Math.floor(Math.random() * matrixCanvas.height);
-    }
+const nav = [["About","about"],["Experience","experience"],["Projects","projects"],["Lab","lab"],["Contact","contact"]];
 
-    // Create packet animation canvas
-    const packetCanvas = document.createElement('canvas');
-    packetCanvas.width = window.innerWidth;
-    packetCanvas.height = window.innerHeight;
-    packetCanvas.style.position = 'fixed';
-    packetCanvas.style.top = '0';
-    packetCanvas.style.left = '0';
-    packetCanvas.style.zIndex = '-2';
-    packetCanvas.style.opacity = '0.15';
-    document.body.appendChild(packetCanvas);
+const Index = () => (
+  <div className="site-shell">
+    <CyberBackground />
+    <div className="noise-layer" />
+    <header className="topbar">
+      <a href="#top" className="brand"><span className="brand-mark">R</span><span>Ricky<span className="accent">.raw</span></span></a>
+      <nav>{nav.map(([label,id]) => <a key={id} href={`#${id}`}>{label}</a>)}</nav>
+      <a className="status-pill" href="mailto:ricky.devsec@gmail.com"><span className="status-dot"/> available</a>
+    </header>
 
-    const packetContext = packetCanvas.getContext('2d');
+    <main id="top">
+      <section className="hero-section">
+        <div className="hero-copy">
+          <div className="eyebrow"><span className="eyebrow-line"/> SECURITY × SOFTWARE × HARDWARE</div>
+          <h1>I build systems<span className="headline-glow"> that fight back.</span></h1>
+          <p className="hero-lede">Ricky — engineer and security builder exploring the space where cybersecurity, cloud-native software, Linux and experimental hardware collide.</p>
+          <div className="hero-actions">
+            <a className="primary-btn" href="#projects">Explore work <ArrowDownRight size={17}/></a>
+            <a className="ghost-btn" href="https://github.com/Ricky-Hacker001" target="_blank" rel="noreferrer">GitHub <ArrowUpRight size={17}/></a>
+          </div>
+          <div className="signal-row"><span><span className="mini-dot"/> Chennai, India</span><span>BUILD STATUS: ONLINE</span><span>SECURITY MODE: ACTIVE</span></div>
+        </div>
+        <motion.div className="hero-console" initial={{opacity:0,y:24,rotate:1}} animate={{opacity:1,y:0,rotate:0}} transition={{duration:.8}}>
+          <div className="console-top"><span><i/><i/><i/></span><span>ricky@lab:~</span><span>v3.0</span></div>
+          <div className="console-body">
+            <div><b>$ whoami</b><span>ricky</span></div>
+            <div><b>$ focus</b><span>cybersecurity</span></div>
+            <div><b>$ stack</b><span>react • node • java • python</span></div>
+            <div><b>$ mode</b><span>build → break → learn → repeat</span></div>
+            <div className="console-cursor">$ <span className="type-cursor">█</span></div>
+          </div>
+          <div className="console-graph">{Array.from({length:38},(_,i)=><span key={i} style={{height:`${18+((i*17)%62)}%`}}/>)}</div>
+        </motion.div>
+      </section>
 
-    // Network point class to simulate network nodes
-    class NetworkPoint {
-      x: number;
-      y: number;
-      radius: number;
-      connections: NetworkPoint[];
-      pulses: { x: number; y: number; radius: number; alpha: number; }[];
-      
-      constructor(x: number, y: number, radius: number) {
-        this.x = x;
-        this.y = y;
-        this.radius = radius;
-        this.connections = [];
-        this.pulses = [];
-      }
-      
-      draw(ctx: CanvasRenderingContext2D) {
-        // Draw node
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(100, 255, 218, 0.3)';
-        ctx.fill();
-        
-        // Draw connections
-        this.connections.forEach(point => {
-          ctx.beginPath();
-          ctx.moveTo(this.x, this.y);
-          ctx.lineTo(point.x, point.y);
-          ctx.strokeStyle = 'rgba(100, 255, 218, 0.1)';
-          ctx.stroke();
-        });
-        
-        // Draw and update pulses
-        this.pulses = this.pulses.filter(pulse => {
-          // Update pulse size and alpha
-          pulse.radius += 0.5;
-          pulse.alpha -= 0.01;
-          
-          if (pulse.alpha <= 0) return false;
-          
-          // Draw pulse
-          ctx.beginPath();
-          ctx.arc(pulse.x, pulse.y, pulse.radius, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(100, 255, 218, ${pulse.alpha})`;
-          ctx.stroke();
-          
-          return true;
-        });
-      }
-      
-      addPulse() {
-        if (Math.random() > 0.98) {
-          this.pulses.push({
-            x: this.x,
-            y: this.y,
-            radius: this.radius,
-            alpha: 0.3
-          });
-        }
-      }
-    }
+      <section className="marquee-band"><div>CYBERSECURITY</div><span>✦</span><div>LINUX</div><span>✦</span><div>MICROSERVICES</div><span>✦</span><div>IOT</div><span>✦</span><div>OPEN SOURCE</div><span>✦</span><div>WIRELESS</div></section>
 
-    // Create network points
-    const networkPoints: NetworkPoint[] = [];
-    const numPoints = Math.floor(window.innerWidth / 150); // Adjust based on screen size
-    
-    for (let i = 0; i < numPoints; i++) {
-      networkPoints.push(new NetworkPoint(
-        Math.random() * window.innerWidth,
-        Math.random() * window.innerHeight,
-        1 + Math.random() * 2
-      ));
-    }
-    
-    // Create connections between points
-    networkPoints.forEach(point => {
-      const numConnections = 1 + Math.floor(Math.random() * 3);
-      let connectedPoints: NetworkPoint[] = [...networkPoints]
-        .filter(p => p !== point)
-        .sort(() => Math.random() - 0.5)
-        .slice(0, numConnections);
-      
-      point.connections = connectedPoints;
-    });
+      <section id="about" className="content-section about-grid">
+        <SectionHeading index="01" eyebrow="identity" title="A builder with a security-first brain."/>
+        <div className="about-panel">
+          <p>I like engineering problems that sit one layer below the polished interface: protocols, infrastructure, attack surfaces, distributed systems and the hardware that makes software touch the physical world.</p>
+          <p>My portfolio is a record of experiments — from security tooling and Raspberry Pi labs to cloud-native services and an ongoing Linux × Android ecosystem.</p>
+          <div className="about-metrics"><div><strong>01</strong><span>Security-first mindset</span></div><div><strong>02</strong><span>Hands-on lab culture</span></div><div><strong>03</strong><span>Software + hardware</span></div></div>
+        </div>
+      </section>
 
-    // Matrix animation function
-    const matrix = () => {
-      if (!matrixContext) return;
-      
-      matrixContext.fillStyle = 'rgba(10, 25, 47, 0.05)';
-      matrixContext.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-      
-      matrixContext.font = `${fontSize}px monospace`;
-      matrixContext.fillStyle = '#64ffda';
-      
-      for (let i = 0; i < drops.length; i++) {
-        const text = String.fromCharCode(33 + Math.floor(Math.random() * 94));
-        matrixContext.fillText(text, i * fontSize, drops[i] * fontSize);
-        
-        if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.98) {
-          drops[i] = 0;
-        }
-        
-        drops[i]++;
-      }
-    };
+      <section id="experience" className="content-section">
+        <SectionHeading index="02" eyebrow="trajectory" title="Shipping, learning, then shipping again." description="A compact timeline of the environments where I have been building real systems."/>
+        <div className="timeline">
+          <article><span className="timeline-mark">NOW</span><div><h3>Cloud Native Microservice Engineer <em>@ Accenture</em></h3><p>Java, Spring, Node.js, Docker, Kubernetes and service-oriented architecture.</p></div></article>
+          <article><span className="timeline-mark">2026</span><div><h3>SOC & Security Research</h3><p>Hands-on work around monitoring, threat hunting, vulnerability research and self-hosted security labs.</p></div></article>
+          <article><span className="timeline-mark">2025</span><div><h3>Strategic & Data / Web Engineering</h3><p>Built web platforms, data workflows and product prototypes across internships and hackathon projects.</p></div></article>
+        </div>
+      </section>
 
-    // Network packet animation function
-    const networkAnim = () => {
-      if (!packetContext) return;
-      
-      packetContext.clearRect(0, 0, packetCanvas.width, packetCanvas.height);
-      
-      // Draw and update network points
-      networkPoints.forEach(point => {
-        point.draw(packetContext);
-        point.addPulse();
-      });
-    };
+      <section id="projects" className="content-section">
+        <SectionHeading index="03" eyebrow="selected builds" title="Projects from the lab, not the template." description="A few things that represent how I think: useful, experimental and slightly obsessive."/>
+        <div className="project-grid">{projects.map(([code,title,type,copy,tags]) => <motion.a key={code} href="https://github.com/Ricky-Hacker001" target="_blank" rel="noreferrer" className="project-card" whileHover={{y:-7}}>
+          <div className="project-meta"><span>{code}</span><ExternalLink size={15}/></div><div className="project-type">{type}</div><h3>{title}</h3><p>{copy}</p><div className="tag-row">{tags.map(tag=><span key={tag}>{tag}</span>)}</div>
+        </motion.a>)}</div>
+      </section>
 
-    const matrixInterval = setInterval(matrix, 50);
-    const networkInterval = setInterval(networkAnim, 50);
+      <section id="lab" className="content-section lab-grid">
+        <div><SectionHeading index="04" eyebrow="toolchain" title="The stack behind the side quests."/>
+          <div className="skills-grid">{skills.map(([title,copy,Icon])=><div className="skill-card" key={title}><Icon size={19}/><div><h3>{title}</h3><p>{copy}</p></div></div>)}</div>
+        </div>
+        <div className="lab-terminal"><div className="terminal-label"><span/> LIVE LAB</div>
+          <div className="lab-line"><span>01</span> ping localhost</div><div className="lab-line"><span>02</span> system → <b>secure</b></div><div className="lab-line"><span>03</span> services → <b>12 online</b></div><div className="lab-line"><span>04</span> devices → <b>07 connected</b></div><div className="lab-line"><span>05</span> caffeine → <b>∞</b></div><div className="lab-line"><span>06</span> next_side_quest → <b>loading...</b></div>
+          <div className="scanner"><span>SCANNING</span><i/></div>
+        </div>
+      </section>
 
-    // Handle window resize
-    const resizeHandler = () => {
-      matrixCanvas.width = window.innerWidth;
-      matrixCanvas.height = window.innerHeight;
-      
-      packetCanvas.width = window.innerWidth;
-      packetCanvas.height = window.innerHeight;
-    };
-
-    window.addEventListener('resize', resizeHandler);
-
-    // Cleanup function
-    return () => {
-      clearInterval(matrixInterval);
-      clearInterval(networkInterval);
-      window.removeEventListener('resize', resizeHandler);
-      document.body.removeChild(matrixCanvas);
-      document.body.removeChild(packetCanvas);
-    };
-  }, []);
-
-  return (
-    <div className="min-h-screen bg-portfolio-navy text-portfolio-slate">
-      <Navbar />
-      <main className="hacker-theme">
-        <HeroSection />
-        <AboutSection />
-        <ExperienceSection />
-        <ProjectsSection />
-        <EducationSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
-  );
-};
+      <section id="contact" className="contact-section"><div className="contact-card">
+        <div><div className="section-kicker"><span>05</span> open channel</div><h2>Have a system worth building?</h2><p>Drop a message. Security research, engineering, collaborations and interesting problems are welcome.</p></div>
+        <div className="contact-actions"><a href="mailto:ricky.devsec@gmail.com" className="primary-btn"><Mail size={17}/> Email me</a><a href="https://www.linkedin.com/in/ricky-f-btech/" target="_blank" rel="noreferrer" className="ghost-btn"><Linkedin size={17}/> LinkedIn</a><a href="https://github.com/Ricky-Hacker001" target="_blank" rel="noreferrer" className="ghost-btn"><Github size={17}/> GitHub</a></div>
+      </div></section>
+    </main>
+    <footer className="footer"><span>© {new Date().getFullYear()} Ricky. Built in public.</span><span>NO TEMPLATE. JUST SIDE QUESTS.</span></footer>
+  </div>
+);
 
 export default Index;
