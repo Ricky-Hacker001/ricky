@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -10,6 +10,8 @@ import {
   Github,
   Linkedin,
   Mail,
+  Maximize2,
+  X,
   Radio,
   ShieldCheck,
   TerminalSquare,
@@ -94,6 +96,10 @@ const nav = [
 ] as const;
 
 const Index = () => {
+  const [terminalOpen, setTerminalOpen] = useState(false);
+  const [terminalInput, setTerminalInput] = useState("");
+  const [terminalLines, setTerminalLines] = useState<string[]>(["ricky@lab:~$ system --status", "SYSTEM ONLINE  //  12 SERVICES  //  07 DEVICES", "ricky@lab:~$ _"]);
+
   useEffect(() => {
     const move = (event: PointerEvent) => {
       const x = (event.clientX / window.innerWidth - 0.5) * 2;
@@ -105,7 +111,28 @@ const Index = () => {
     };
 
     window.addEventListener("pointermove", move, { passive: true });
-    return () => window.removeEventListener("pointermove", move);
+
+    const cursor = document.createElement("div");
+    cursor.className = "custom-cursor";
+    cursor.innerHTML = `<span class="cursor-crosshair"></span><span class="cursor-dot"></span>`;
+    document.body.appendChild(cursor);
+    const cursorMove = (event: PointerEvent) => {
+      cursor.style.setProperty("--cx", `${event.clientX}px`);
+      cursor.style.setProperty("--cy", `${event.clientY}px`);
+    };
+    const cursorDown = () => cursor.classList.add("cursor-active");
+    const cursorUp = () => cursor.classList.remove("cursor-active");
+    window.addEventListener("pointermove", cursorMove, { passive: true });
+    window.addEventListener("pointerdown", cursorDown, { passive: true });
+    window.addEventListener("pointerup", cursorUp, { passive: true });
+
+    return () => {
+      window.removeEventListener("pointermove", move);
+      window.removeEventListener("pointermove", cursorMove);
+      window.removeEventListener("pointerdown", cursorDown);
+      window.removeEventListener("pointerup", cursorUp);
+      cursor.remove();
+    };
   }, []);
 
   return (
@@ -338,6 +365,48 @@ const Index = () => {
           </div>
         </section>
       </main>
+
+
+      <button type="button" className="terminal-launcher" onClick={() => setTerminalOpen(true)} aria-label="Open interactive terminal">
+        <span className="terminal-launcher-ring" />
+        <TerminalSquare size={18} />
+        <span>TERMINAL</span>
+      </button>
+
+      {terminalOpen && (
+        <div className="terminal-overlay" role="dialog" aria-modal="true" aria-label="Interactive terminal">
+          <div className="terminal-window">
+            <div className="terminal-window-head">
+              <div className="terminal-window-title"><span className="terminal-live-dot" /> ricky@cyberlab — secure shell</div>
+              <div className="terminal-window-actions">
+                <button type="button" onClick={() => setTerminalLines(["ricky@lab:~$ _"])} aria-label="Clear terminal">CLEAR</button>
+                <button type="button" onClick={() => setTerminalOpen(false)} aria-label="Close terminal"><X size={16} /></button>
+              </div>
+            </div>
+            <div className="terminal-output" aria-live="polite">
+              {terminalLines.map((line, index) => <div key={index} className={line.startsWith("SYSTEM") ? "terminal-success" : ""}>{line}</div>)}
+            </div>
+            <form className="terminal-input-row" onSubmit={(event) => {
+              event.preventDefault();
+              const command = terminalInput.trim().toLowerCase();
+              if (!command) return;
+              const responses: Record<string, string> = {
+                help: "commands: help · about · skills · projects · status · clear",
+                about: "identity: security × software × hardware",
+                skills: "stack: react · node · java · python · docker · kubernetes · linux",
+                projects: "projects: koottali · open_cobra · cake delight · leakwatch · gold app",
+                status: "all systems nominal // perimeter green // lab online",
+              };
+              const output = command === "clear" ? [] : [`ricky@lab:~$ ${command}`, responses[command] ?? `command not found: ${command}  // try "help"`, "ricky@lab:~$ _"];
+              setTerminalLines(output);
+              setTerminalInput("");
+            }}>
+              <span>›</span>
+              <input value={terminalInput} onChange={(event) => setTerminalInput(event.target.value)} autoFocus aria-label="Terminal command" placeholder="type help" />
+            </form>
+          </div>
+        </div>
+      )}
 
       <footer className="footer">
         <span>© {new Date().getFullYear()} Ricky. Built in public.</span>
