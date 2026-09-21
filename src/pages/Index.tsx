@@ -116,12 +116,63 @@ const Index = () => {
 
     window.addEventListener("pointermove", move, { passive: true });
 
+    const updateMotion = () => {
+      const scrollable = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1);
+      document.documentElement.style.setProperty("--scroll-progress", (window.scrollY / scrollable).toFixed(4));
+    };
 
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
+
+    document.querySelectorAll(".content-section, .contact-section, .project-card, .achievement-card, .skill-card, .about-metrics > div").forEach((element, index) => {
+      element.classList.add("motion-reveal");
+      (element as HTMLElement).style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 70}ms`);
+      revealObserver.observe(element);
+    });
+
+    const tiltElements = Array.from(document.querySelectorAll<HTMLElement>(".project-card, .achievement-card, .skill-card"));
+    const tiltMove = (event: MouseEvent) => {
+      const element = event.currentTarget as HTMLElement;
+      const rect = element.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      element.style.setProperty("--tilt-x", `${(-y * 7).toFixed(2)}deg`);
+      element.style.setProperty("--tilt-y", `${(x * 9).toFixed(2)}deg`);
+      element.style.setProperty("--spot-x", `${(x + 0.5) * 100}%`);
+      element.style.setProperty("--spot-y", `${(y + 0.5) * 100}%`);
+      element.classList.add("is-tilting");
+    };
+    const tiltLeave = (event: MouseEvent) => {
+      const element = event.currentTarget as HTMLElement;
+      element.style.setProperty("--tilt-x", "0deg");
+      element.style.setProperty("--tilt-y", "0deg");
+      element.classList.remove("is-tilting");
+    };
+    tiltElements.forEach((element) => {
+      element.addEventListener("mousemove", tiltMove);
+      element.addEventListener("mouseleave", tiltLeave);
+    });
+
+    updateMotion();
+    window.addEventListener("scroll", updateMotion, { passive: true });
+    window.addEventListener("resize", updateMotion);
 
     return () => {
       window.removeEventListener("pointermove", move);
-    };
-  }, []);
+      window.removeEventListener("scroll", updateMotion);
+      window.removeEventListener("resize", updateMotion);
+      revealObserver.disconnect();
+      tiltElements.forEach((element) => {
+        element.removeEventListener("mousemove", tiltMove);
+        element.removeEventListener("mouseleave", tiltLeave);
+      });
+    };  }, []);
 
   const runTerminalCommand = (rawCommand: string) => {
     const command = rawCommand.trim().toLowerCase();
@@ -153,6 +204,9 @@ const Index = () => {
 
   return (
     <div className="site-shell">
+      <div className="scroll-progress" aria-hidden="true"><span /></div>
+      <div className="motion-orb motion-orb-a" aria-hidden="true" />
+      <div className="motion-orb motion-orb-b" aria-hidden="true" />
       <CyberBackground />
       <div className="noise-layer" />
       <div className="ambient-hud" aria-hidden="true">
@@ -252,6 +306,11 @@ const Index = () => {
             <span className="circuit-chip chip-a">01 // NODE</span>
             <span className="circuit-chip chip-b">0x57F2 // LINK</span>
             <span className="circuit-chip chip-c">SECURE // 24×7</span>
+            <svg className="self-drawing-circuit" viewBox="0 0 360 180" aria-hidden="true">
+              <path d="M12 145H72V95H128V42H190V95H250V28H348" />
+              <path d="M72 145V164H174V130H294V165H348" />
+              <circle cx="72" cy="145" r="3" /><circle cx="128" cy="42" r="3" /><circle cx="250" cy="28" r="3" /><circle cx="348" cy="28" r="3" />
+            </svg>
           </div>
 
           <motion.div
@@ -382,7 +441,8 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="lab-terminal">
+          <div className="lab-terminal lab-terminal-3d">
+            <div className="iso-server" aria-hidden="true"><span /><span /><span /><i /><i /><i /></div>
             <div className="terminal-label"><span /> LIVE LAB</div>
             <div className="lab-line"><span>01</span> ping localhost</div>
             <div className="lab-line"><span>02</span> system → <b>secure</b></div>
