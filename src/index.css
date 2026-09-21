@@ -670,5 +670,3 @@ body::after{
   .terminal-output{min-height:300px;padding:18px;font-size:10px}
   .terminal-input-row{padding:13px 16px}
 }
-@media(prefers-reduced-motion:reduce){
-  
