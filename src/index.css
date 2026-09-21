@@ -875,3 +875,51 @@ html,body,a,button,input{cursor:none}
   .custom-cursor,.terminal-launcher-ring{animation:none}
   .terminal-window{animation:none}
 }
+
+/* Minimal precision cursor — global, not hero-scoped */
+html,body,a,button,input,textarea,select{cursor:none!important}
+.custom-cursor{
+  --cx:-100px;--cy:-100px;
+  position:fixed!important;
+  left:0!important;top:0!important;
+  width:28px;height:28px;
+  z-index:2147483647!important;
+  pointer-events:none!important;
+  transform:translate3d(calc(var(--cx) - 14px),calc(var(--cy) - 14px),0);
+  transition:transform .035s linear;
+  display:block!important;
+  opacity:1!important;
+}
+.cursor-crosshair{
+  position:absolute;
+  inset:5px;
+  width:18px;height:18px;
+  border:1px solid rgba(125,247,255,.8);
+  border-radius:50%;
+  box-shadow:0 0 12px rgba(87,242,255,.18);
+  animation:none!important;
+  transition:transform .16s ease,border-color .16s ease;
+}
+.cursor-crosshair::before,.cursor-crosshair::after{
+  content:"";position:absolute;background:#7df7ff;opacity:.85;
+}
+.cursor-crosshair::before{width:1px;height:5px;left:50%;top:-4px;transform:translateX(-50%)}
+.cursor-crosshair::after{width:5px;height:1px;left:-4px;top:50%;transform:translateY(-50%)}
+.cursor-dot{
+  position:absolute;left:50%;top:50%;
+  width:3px;height:3px;
+  transform:translate(-50%,-50%);
+  border-radius:50%;background:#fff;
+  box-shadow:0 0 7px #7df7ff;
+}
+.custom-cursor.cursor-active .cursor-crosshair{
+  transform:scale(.72);
+  border-color:#fff;
+}
+@media(pointer:coarse){
+  html,body,a,button,input,textarea,select{cursor:auto!important}
+  .custom-cursor{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .custom-cursor{transition:none}
+}
