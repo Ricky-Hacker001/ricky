@@ -670,3 +670,66 @@ body::after{
   .terminal-output{min-height:300px;padding:18px;font-size:10px}
   .terminal-input-row{padding:13px 16px}
 }
+
+/* Interactive terminal polish */
+.terminal-launcher{
+  cursor:pointer;
+  user-select:none;
+  min-width:150px;
+}
+.terminal-launcher svg{filter:drop-shadow(0 0 7px rgba(87,242,255,.35))}
+.terminal-window{
+  color:#b8d1d6;
+}
+.terminal-window-head{min-height:54px}
+.terminal-window-actions button{cursor:pointer}
+.terminal-output{
+  min-height:360px;
+  max-height:52vh;
+  overscroll-behavior:contain;
+  background:
+    linear-gradient(rgba(87,242,255,.018) 1px,transparent 1px);
+  background-size:100% 28px;
+}
+.terminal-output div{
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+.terminal-input-row{
+  background:rgba(0,0,0,.28);
+  min-height:58px;
+}
+.terminal-prompt{white-space:nowrap;color:#68ff9d}
+.terminal-input-row input{
+  min-height:34px;
+  caret-color:var(--cyan);
+}
+.terminal-input-row input:focus{
+  outline:none;
+  text-shadow:0 0 10px rgba(87,242,255,.25);
+}
+.terminal-run{
+  cursor:pointer;
+  min-width:58px;
+  height:34px;
+  border:1px solid rgba(87,242,255,.24);
+  border-radius:7px;
+  background:rgba(87,242,255,.04);
+  color:var(--cyan);
+  font:9px 'DM Mono',monospace;
+  transition:background .2s,border-color .2s,transform .2s;
+}
+.terminal-run:hover{
+  background:rgba(87,242,255,.1);
+  border-color:rgba(87,242,255,.5);
+  transform:translateY(-1px);
+}
+.terminal-run:active{transform:translateY(0)}
+@media(max-width:680px){
+  .terminal-window{width:calc(100vw - 24px);max-height:90vh}
+  .terminal-window-head{padding:11px 12px}
+  .terminal-output{min-height:280px;max-height:52vh;padding:16px}
+  .terminal-input-row{gap:7px;padding:10px 12px}
+  .terminal-prompt{font-size:9px}
+  .terminal-run{min-width:52px}
+}
