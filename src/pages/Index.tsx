@@ -222,7 +222,7 @@ const Index = () => {
             </div>
           </div>
 
-          <div className="hero-visual-layer" aria-hidden="true">
+          <div className="hero-visual-layer">
             <span className="hero-orbit orbit-one" />
             <span className="hero-orbit orbit-two" />
             <span className="hero-orbit orbit-three" />
@@ -230,6 +230,28 @@ const Index = () => {
             <span className="hero-wire hero-wire-a" />
             <span className="hero-wire hero-wire-b" />
             <span className="hero-wire hero-wire-c" />
+
+            <button type="button" className="floating-node node-security" onClick={() => setTerminalOpen(true)} aria-label="Open security terminal">
+              <span className="node-icon"><ShieldCheck size={15} /></span>
+              <span><b>SECURITY</b><small>ACTIVE</small></span>
+              <i />
+            </button>
+
+            <button type="button" className="floating-node node-network" onClick={() => document.getElementById("lab")?.scrollIntoView({ behavior: "smooth" })} aria-label="Open lab section">
+              <span className="node-icon"><Radio size={15} /></span>
+              <span><b>NETWORK</b><small>LIVE LINK</small></span>
+              <i />
+            </button>
+
+            <button type="button" className="floating-node node-core" onClick={() => document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })} aria-label="Explore projects">
+              <span className="node-icon"><Cpu size={15} /></span>
+              <span><b>CORE</b><small>BUILDING</small></span>
+              <i />
+            </button>
+
+            <span className="circuit-chip chip-a">01 // NODE</span>
+            <span className="circuit-chip chip-b">0x57F2 // LINK</span>
+            <span className="circuit-chip chip-c">SECURE // 24×7</span>
           </div>
 
           <motion.div
