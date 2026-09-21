@@ -114,11 +114,12 @@ const Index = () => {
 
     const cursor = document.createElement("div");
     cursor.className = "custom-cursor";
-    cursor.innerHTML = `<span class="cursor-crosshair"></span><span class="cursor-dot"></span>`;
-    document.body.appendChild(cursor);
+    cursor.innerHTML = `<span class="cursor-ring"></span><span class="cursor-dot"></span>`;
+    document.documentElement.appendChild(cursor);
+
     const cursorMove = (event: PointerEvent) => {
-      cursor.style.setProperty("--cx", `${event.clientX}px`);
-      cursor.style.setProperty("--cy", `${event.clientY}px`);
+      cursor.style.left = `${event.clientX}px`;
+      cursor.style.top = `${event.clientY}px`;
     };
     const cursorDown = () => cursor.classList.add("cursor-active");
     const cursorUp = () => cursor.classList.remove("cursor-active");
