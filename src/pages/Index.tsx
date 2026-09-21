@@ -123,6 +123,34 @@ const Index = () => {
     };
   }, []);
 
+  const runTerminalCommand = (rawCommand: string) => {
+    const command = rawCommand.trim().toLowerCase();
+    if (!command) return;
+
+    const responses: Record<string, string> = {
+      help: "commands: help · about · skills · projects · status · whoami · contact · clear",
+      about: "identity: security × software × hardware",
+      skills: "stack: react · node · java · python · docker · kubernetes · linux",
+      projects: "projects: koottali · open_cobra · cake delight · leakwatch · gold app",
+      status: "all systems nominal // perimeter green // lab online",
+      whoami: "ricky // security + software + hardware builder",
+      contact: "email: ricky.devsec@gmail.com // github: Ricky-Hacker001",
+    };
+
+    if (command === "clear") {
+      setTerminalLines(["ricky@lab:~$ _"]);
+    } else {
+      const response = responses[command] ?? `command not found: ${command} // type "help"`;
+      setTerminalLines((previous) => [
+        ...previous.filter((line) => line !== "ricky@lab:~$ _"),
+        `ricky@lab:~$ ${command}`,
+        response,
+        "ricky@lab:~$ _",
+      ].slice(-18));
+    }
+    setTerminalInput("");
+  };
+
   return (
     <div className="site-shell">
       <CyberBackground />
@@ -365,57 +393,80 @@ const Index = () => {
         <div className="terminal-overlay" role="dialog" aria-modal="true" aria-label="Interactive terminal">
           <div className="terminal-window">
             <div className="terminal-window-head">
-              <div className="terminal-window-title"><span className="terminal-live-dot" /> ricky@cyberlab — secure shell</div>
+              <div className="terminal-brand">
+                <span className="terminal-lights"><i/><i/><i/></span>
+                <span className="terminal-window-title">RICKY // CYBERLAB</span>
+                <span className="terminal-session">SESSION_01</span>
+              </div>
               <div className="terminal-window-actions">
+                <span className="terminal-secure"><span className="terminal-live-dot" /> SECURE</span>
                 <button type="button" onClick={() => setTerminalLines(["ricky@lab:~$ _"])} aria-label="Clear terminal">CLEAR</button>
                 <button type="button" onClick={() => setTerminalOpen(false)} aria-label="Close terminal"><X size={16} /></button>
               </div>
             </div>
-            <div className="terminal-output" aria-live="polite">
-              {terminalLines.map((line, index) => <div key={index} className={line.startsWith("SYSTEM") ? "terminal-success" : ""}>{line}</div>)}
+
+            <div className="terminal-body">
+              <aside className="terminal-sidebar">
+                <div className="terminal-sidebar-label">SYSTEM</div>
+                <div className="terminal-system-card">
+                  <span className="system-pulse" />
+                  <div><strong>ONLINE</strong><small>CYBERLAB CORE</small></div>
+                </div>
+                <div className="terminal-stat"><span>UPTIME</span><b>99.9%</b></div>
+                <div className="terminal-stat"><span>SERVICES</span><b>12</b></div>
+                <div className="terminal-stat"><span>DEVICES</span><b>07</b></div>
+
+                <div className="terminal-sidebar-label command-label">QUICK COMMANDS</div>
+                <div className="terminal-quick">
+                  {["help","about","skills","projects","status","whoami"].map((command) => (
+                    <button key={command} type="button" onClick={() => runTerminalCommand(command)}>
+                      <span>›</span>{command}
+                    </button>
+                  ))}
+                </div>
+              </aside>
+
+              <section className="terminal-main">
+                <div className="terminal-path">
+                  <span>ricky@cyberlab</span><b>:</b><span>~</span><b>$</b><em>secure shell</em>
+                </div>
+                <div className="terminal-output" aria-live="polite">
+                  {terminalLines.map((line, index) => (
+                    <div key={index} className={line.startsWith("SYSTEM") ? "terminal-success" : ""}>
+                      {line}
+                    </div>
+                  ))}
+                </div>
+
+                <form className="terminal-input-row" onSubmit={(event) => {
+                  event.preventDefault();
+                  runTerminalCommand(terminalInput);
+                }}>
+                  <span className="terminal-prompt">ricky@lab:~$</span>
+                  <input
+                    value={terminalInput}
+                    onChange={(event) => setTerminalInput(event.target.value)}
+                    autoFocus
+                    aria-label="Terminal command"
+                    placeholder="type a command..."
+                    spellCheck={false}
+                    autoComplete="off"
+                  />
+                  <button type="submit" className="terminal-run" aria-label="Run command">
+                    <span>RUN</span><ArrowUpRight size={13} />
+                  </button>
+                </form>
+              </section>
             </div>
-            <form className="terminal-input-row" onSubmit={(event) => {
-              event.preventDefault();
-              const command = terminalInput.trim().toLowerCase();
-              if (!command) return;
-              const responses: Record<string, string> = {
-                help: "commands: help · about · skills · projects · status · whoami · contact · clear",
-                about: "identity: security × software × hardware",
-                skills: "stack: react · node · java · python · docker · kubernetes · linux",
-                projects: "projects: koottali · open_cobra · cake delight · leakwatch · gold app",
-                status: "all systems nominal // perimeter green // lab online",
-                whoami: "ricky // security + software + hardware builder",
-                contact: "email: ricky.devsec@gmail.com // github: Ricky-Hacker001",
-              };
-              if (command === "clear") {
-                setTerminalLines(["ricky@lab:~$ _"]);
-              } else {
-                const response = responses[command] ?? `command not found: ${command} // type "help"`;
-                setTerminalLines((previous) => [
-                  ...previous.filter((line) => line !== "ricky@lab:~$ _"),
-                  `ricky@lab:~$ ${command}`,
-                  response,
-                  "ricky@lab:~$ _",
-                ].slice(-18));
-              }
-              setTerminalInput("");
-            }}>
-              <span className="terminal-prompt">ricky@lab:~$</span>
-              <input
-                value={terminalInput}
-                onChange={(event) => setTerminalInput(event.target.value)}
-                autoFocus
-                aria-label="Terminal command"
-                placeholder="help"
-                spellCheck={false}
-                autoComplete="off"
-              />
-              <button type="submit" className="terminal-run" aria-label="Run command">ENTER</button>
-            </form>
+
+            <div className="terminal-footer">
+              <span><i/> ENCRYPTED CHANNEL</span>
+              <span>LOCAL SESSION</span>
+              <span>ESC / CLOSE</span>
+            </div>
           </div>
         </div>
       )}
-
       <footer className="footer">
         <span>© {new Date().getFullYear()} Ricky. Built in public.</span>
         <span>NO TEMPLATE. JUST SIDE QUESTS.</span>
