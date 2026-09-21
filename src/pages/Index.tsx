@@ -105,7 +105,7 @@ const Index = () => {
 
 <section id="lab" className="content-section lab-grid">
         <div><SectionHeading index="05" eyebrow="toolchain" title="The stack behind the side quests."/>
-          <div className="skills-grid"{skills.map(([title,copy,Icon])=><div className="skill-card" key={title}><Icon size={19}/><div><h3>{title}</h3><p>{copy}</p></div></div>)}</div>
+          <div className="skills-grid">{skills.map(([title,copy,Icon])=><div className="skill-card" key={title}><Icon size={19}/><div><h3>{title}</h3><p>{copy}</p></div></div>)}</div>
         </div>
         <div className="lab-terminal"><div className="terminal-label"><span/> LIVE LAB</div>
           <div className="lab-line"><span>01</span> ping localhost</div><div className="lab-line"><span>02</span> system → <b>secure</b></div><div className="lab-line"><span>03</span> services → <b>12 online</b></div><div className="lab-line"><span>04</span> devices → <b>07 connected</b></div><div className="lab-line"><span>05</span> caffeine → <b>∞</b></div><div className="lab-line"><span>06</span> next_side_quest → <b>loading...</b></div>
