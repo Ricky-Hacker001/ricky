@@ -26,7 +26,7 @@
 
 .recognition-section{position:relative}.recognition-section:before{content:'';position:absolute;left:0;right:0;top:28px;height:1px;background:linear-gradient(90deg,transparent,rgba(87,242,255,.12),transparent);pointer-events:none}.achievement-card{position:relative;overflow:hidden;transition:transform .28s ease,border-color .28s ease,background .28s ease;isolation:isolate}.achievement-card:before{content:'';position:absolute;width:160px;height:160px;right:-90px;top:-90px;border-radius:50%;background:radial-gradient(circle,rgba(87,242,255,.14),transparent 68%);transition:transform .45s ease}.achievement-card:after{content:'';position:absolute;left:-100%;bottom:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);transition:left .5s ease}.achievement-card:hover{transform:translateY(-5px);border-color:rgba(87,242,255,.3);background:rgba(87,242,255,.025)}.achievement-card:hover:before{transform:scale(1.6)}.achievement-card:hover:after{left:100%}.achievement-card>span{position:relative;z-index:2}.achievement-card h3,.achievement-card p,.achievement-card small{position:relative;z-index:2}.recognition-section .section-intro{position:relative}.recognition-section .section-intro:after{content:'// VERIFIED';margin-left:14px;color:#68ff9d;font:9px 'DM Mono',monospace;letter-spacing:.1em;vertical-align:middle}.signal-row span{display:inline-flex;align-items:center;gap:7px}.signal-row span:not(:first-child):before{content:'✦';color:rgba(87,242,255,.5);margin-right:7px}
 
-html{perspective:1200px}.site-shell{transform-style:preserve-3d}.hero-console,.project-card,.achievement-card,.skill-card,.lab-terminal,.contact-card{transform-style:preserve-3d;backface-visibility:hidden}.hero-console{transform:perspective(1100px) rotateX(calc(var(--rx)*.45)) rotateY(calc(var(--ry)*.45)) translate3d(calc(var(--px)*.35),calc(var(--py)*.35),0);transition:transform .18s ease-out}.project-card:hover{transform:perspective(900px) translateY(-8px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(12px)}.achievement-card:hover,.skill-card:hover,.lab-terminal:hover{transform:perspective(900px) rotateX(calc(var(--rx)*.45)) rotateY(calc(var(--ry)*.45)) translate3d(calc(var(--px)*.2),calc(var(--py)*.2),8px)}.skill-card,.lab-terminal,.contact-card{transition:transform .22s ease-out,border-color .28s ease,background .28s ease}.hero-section:after{content:'';position:absolute;inset:12% 0 auto;height:55%;pointer-events:none;background:radial-gradient(circle at 70% 50%,rgba(87,242,255,.05),transparent 38%);transform:translate3d(var(--px),var(--py),-20px);filter:blur(35px)}.hero-section{position:relative;transform-style:preserve-3d}.topbar{transform:translateZ(30px)}.content-section{transform-style:preserve-3d}.project-grid{perspective:1400px}.achievement-grid{perspective:1400px}.skill-card:hover{border-color:rgba(87,242,255,.28)}.hero-copy{transform:translate3d(calc(var(--px)*-.12),calc(var(--py)*-.12),20px);transition:transform .2s ease-out}.section-intro{transform:translateZ(12px)}.footer{transform:translateZ(8px)}
+.site-shell{transform-style:preserve-3d}.hero-console,.project-card,.achievement-card,.skill-card,.lab-terminal,.contact-card{transform-style:preserve-3d;backface-visibility:hidden}.hero-console{transform:perspective(1100px) rotateX(calc(var(--rx)*.45)) rotateY(calc(var(--ry)*.45)) translate3d(calc(var(--px)*.35),calc(var(--py)*.35),0);transition:transform .18s ease-out}.project-card:hover{transform:perspective(900px) translateY(-8px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(12px)}.achievement-card:hover,.skill-card:hover,.lab-terminal:hover{transform:perspective(900px) rotateX(calc(var(--rx)*.45)) rotateY(calc(var(--ry)*.45)) translate3d(calc(var(--px)*.2),calc(var(--py)*.2),8px)}.skill-card,.lab-terminal,.contact-card{transition:transform .22s ease-out,border-color .28s ease,background .28s ease}.hero-section:after{content:'';position:absolute;inset:12% 0 auto;height:55%;pointer-events:none;background:radial-gradient(circle at 70% 50%,rgba(87,242,255,.05),transparent 38%);transform:translate3d(var(--px),var(--py),-20px);filter:blur(35px)}.hero-section{position:relative;transform-style:preserve-3d}.topbar{transform:translateZ(30px)}.content-section{transform-style:preserve-3d}.project-grid{perspective:1400px}.achievement-grid{perspective:1400px}.skill-card:hover{border-color:rgba(87,242,255,.28)}.hero-copy{transform:translate3d(calc(var(--px)*-.12),calc(var(--py)*-.12),20px);transition:transform .2s ease-out}.section-intro{transform:translateZ(12px)}.footer{transform:translateZ(8px)}
 @media(prefers-reduced-motion:reduce){.hero-console,.project-card,.achievement-card,.skill-card,.lab-terminal,.hero-copy{transform:none!important}}
 
 
@@ -1183,4 +1183,26 @@ body::after{
     height:48px;
   }
   .nav-terminal-btn{min-width:38px}
+}
+
+/* Navigation hit-area fix: keep the sticky header above all visual/3D layers */
+.topbar{
+  position:sticky;
+  z-index:1000;
+  pointer-events:auto;
+  isolation:isolate;
+}
+.topbar > *,
+.topbar nav,
+.topbar nav a,
+.topbar .brand,
+.nav-terminal-btn{
+  position:relative;
+  z-index:1001;
+  pointer-events:auto;
+}
+.topbar nav a,
+.topbar .brand,
+.nav-terminal-btn{
+  touch-action:manipulation;
 }
