@@ -923,3 +923,43 @@ html,body,a,button,input,textarea,select{cursor:none!important}
 @media(prefers-reduced-motion:reduce){
   .custom-cursor{transition:none}
 }
+
+/* Final cursor: minimal, viewport-anchored, page-wide */
+.custom-cursor{
+  position:fixed!important;
+  left:0!important;top:0!important;
+  width:0!important;height:0!important;
+  z-index:2147483647!important;
+  pointer-events:none!important;
+  display:block!important;
+  opacity:1!important;
+  transform:none!important;
+  transition:none!important;
+}
+.custom-cursor .cursor-ring{
+  position:absolute;
+  left:0;top:0;
+  width:24px;height:24px;
+  margin:-12px 0 0 -12px;
+  border:1px solid rgba(125,247,255,.72);
+  border-radius:50%;
+  box-shadow:0 0 16px rgba(87,242,255,.14);
+  transition:transform .14s ease,border-color .14s ease,box-shadow .14s ease;
+}
+.custom-cursor .cursor-dot{
+  position:absolute;
+  left:0;top:0;
+  width:4px;height:4px;
+  margin:-2px 0 0 -2px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 8px 1px rgba(125,247,255,.8);
+}
+.custom-cursor.cursor-active .cursor-ring{
+  transform:scale(.72);
+  border-color:#fff;
+  box-shadow:0 0 22px rgba(125,247,255,.35);
+}
+@media(pointer:coarse){
+  .custom-cursor{display:none!important}
+}
