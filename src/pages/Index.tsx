@@ -112,6 +112,13 @@ const Index = () => {
     <div className="site-shell">
       <CyberBackground />
       <div className="noise-layer" />
+      <div className="ambient-hud" aria-hidden="true">
+        <span className="hud-orbit hud-orbit-a" />
+        <span className="hud-orbit hud-orbit-b" />
+        <span className="hud-crosshair" />
+        <span className="hud-wire wire-a" />
+        <span className="hud-wire wire-b" />
+      </div>
 
       <header className="topbar">
         <a href="#top" className="brand">
@@ -163,6 +170,16 @@ const Index = () => {
               <span>BUILD STATUS: ONLINE</span>
               <span>SECURITY MODE: ACTIVE</span>
             </div>
+          </div>
+
+          <div className="hero-visual-layer" aria-hidden="true">
+            <span className="hero-orbit orbit-one" />
+            <span className="hero-orbit orbit-two" />
+            <span className="hero-orbit orbit-three" />
+            <span className="hero-core" />
+            <span className="hero-wire hero-wire-a" />
+            <span className="hero-wire hero-wire-b" />
+            <span className="hero-wire hero-wire-c" />
           </div>
 
           <motion.div
