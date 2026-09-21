@@ -1081,3 +1081,106 @@ body::after{
   .terminal-run span{display:none}
   .terminal-run{min-width:38px!important}
 }
+
+/* Hero CTA cleanup */
+.hero-actions{
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:28px;
+}
+.hero-actions .primary-btn,
+.hero-actions .ghost-btn{
+  position:relative;
+  min-width:148px;
+  height:50px;
+  padding:0 18px;
+  border-radius:10px;
+  text-decoration:none;
+  box-sizing:border-box;
+}
+.hero-actions .primary-btn{
+  color:#031014;
+  background:linear-gradient(135deg,#75f7ff 0%,#57e9f5 58%,#8b82ff 100%);
+  border:1px solid rgba(168,255,255,.35);
+  box-shadow:0 10px 28px rgba(87,242,255,.12),inset 0 1px rgba(255,255,255,.55);
+}
+.hero-actions .primary-btn::after{
+  content:"";
+  position:absolute;
+  inset:1px;
+  border-radius:9px;
+  background:linear-gradient(105deg,rgba(255,255,255,.28),transparent 35%);
+  opacity:.55;
+  pointer-events:none;
+}
+.hero-actions .ghost-btn{
+  color:#c5d8dc;
+  background:rgba(5,12,16,.55);
+  border:1px solid rgba(125,247,255,.16);
+  box-shadow:inset 0 1px rgba(255,255,255,.035);
+}
+.hero-actions .primary-btn:hover,
+.hero-actions .ghost-btn:hover{
+  transform:translateY(-3px);
+}
+.hero-actions .primary-btn:focus-visible,
+.hero-actions .ghost-btn:focus-visible,
+.nav-terminal-btn:focus-visible{
+  outline:2px solid rgba(125,247,255,.65);
+  outline-offset:3px;
+}
+
+/* Navigation terminal control */
+.nav-terminal-btn{
+  position:relative;
+  min-height:38px;
+  padding:0 13px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  border:1px solid rgba(125,247,255,.2);
+  border-radius:9px;
+  color:#9eb7bd;
+  background:linear-gradient(145deg,rgba(87,242,255,.055),rgba(255,255,255,.018));
+  box-shadow:inset 0 1px rgba(255,255,255,.04),0 7px 24px rgba(0,0,0,.18);
+  font:9px 'DM Mono',monospace;
+  letter-spacing:.08em;
+  transition:transform .22s ease,border-color .22s ease,color .22s ease,background .22s ease;
+}
+.nav-terminal-btn:hover{
+  transform:translateY(-2px);
+  color:#d9ffff;
+  border-color:rgba(125,247,255,.48);
+  background:rgba(87,242,255,.08);
+}
+.nav-terminal-btn svg{color:#7df7ff;filter:drop-shadow(0 0 6px rgba(87,242,255,.35))}
+.nav-terminal-status{
+  width:5px;height:5px;
+  border-radius:50%;
+  background:#68ff9d;
+  box-shadow:0 0 9px rgba(104,255,157,.8);
+  animation:terminalBlink 1.4s steps(2) infinite;
+}
+
+/* Prevent nav compression on smaller screens */
+@media(max-width:920px){
+  .nav-terminal-btn{min-height:34px;padding:0 10px}
+  .nav-terminal-btn span:not(.nav-terminal-status){display:none}
+}
+@media(max-width:680px){
+  .hero-actions{
+    width:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+  .hero-actions .primary-btn,
+  .hero-actions .ghost-btn{
+    min-width:0;
+    width:100%;
+    height:48px;
+  }
+  .nav-terminal-btn{min-width:38px}
+}
