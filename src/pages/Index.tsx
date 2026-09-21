@@ -112,27 +112,10 @@ const Index = () => {
 
     window.addEventListener("pointermove", move, { passive: true });
 
-    const cursor = document.createElement("div");
-    cursor.className = "custom-cursor";
-    cursor.innerHTML = `<span class="cursor-ring"></span><span class="cursor-dot"></span>`;
-    document.documentElement.appendChild(cursor);
 
-    const cursorMove = (event: PointerEvent) => {
-      cursor.style.left = `${event.clientX}px`;
-      cursor.style.top = `${event.clientY}px`;
-    };
-    const cursorDown = () => cursor.classList.add("cursor-active");
-    const cursorUp = () => cursor.classList.remove("cursor-active");
-    window.addEventListener("pointermove", cursorMove, { passive: true });
-    window.addEventListener("pointerdown", cursorDown, { passive: true });
-    window.addEventListener("pointerup", cursorUp, { passive: true });
 
     return () => {
       window.removeEventListener("pointermove", move);
-      window.removeEventListener("pointermove", cursorMove);
-      window.removeEventListener("pointerdown", cursorDown);
-      window.removeEventListener("pointerup", cursorUp);
-      cursor.remove();
     };
   }, []);
 
