@@ -98,7 +98,11 @@ const nav = [
 const Index = () => {
   const [terminalOpen, setTerminalOpen] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
-  const [terminalLines, setTerminalLines] = useState<string[]>(["ricky@lab:~$ system --status", "SYSTEM ONLINE  //  12 SERVICES  //  07 DEVICES", "ricky@lab:~$ _"]);
+  const [terminalLines, setTerminalLines] = useState<string[]>([
+    "ricky@lab:~$ system --status",
+    "SYSTEM ONLINE  //  12 SERVICES  //  07 DEVICES",
+    "ricky@lab:~$ _",
+  ]);
 
   useEffect(() => {
     const move = (event: PointerEvent) => {
@@ -375,18 +379,38 @@ const Index = () => {
               const command = terminalInput.trim().toLowerCase();
               if (!command) return;
               const responses: Record<string, string> = {
-                help: "commands: help · about · skills · projects · status · clear",
+                help: "commands: help · about · skills · projects · status · whoami · contact · clear",
                 about: "identity: security × software × hardware",
                 skills: "stack: react · node · java · python · docker · kubernetes · linux",
                 projects: "projects: koottali · open_cobra · cake delight · leakwatch · gold app",
                 status: "all systems nominal // perimeter green // lab online",
+                whoami: "ricky // security + software + hardware builder",
+                contact: "email: ricky.devsec@gmail.com // github: Ricky-Hacker001",
               };
-              const output = command === "clear" ? [] : [`ricky@lab:~$ ${command}`, responses[command] ?? `command not found: ${command}  // try "help"`, "ricky@lab:~$ _"];
-              setTerminalLines(output);
+              if (command === "clear") {
+                setTerminalLines(["ricky@lab:~$ _"]);
+              } else {
+                const response = responses[command] ?? `command not found: ${command} // type "help"`;
+                setTerminalLines((previous) => [
+                  ...previous.filter((line) => line !== "ricky@lab:~$ _"),
+                  `ricky@lab:~$ ${command}`,
+                  response,
+                  "ricky@lab:~$ _",
+                ].slice(-18));
+              }
               setTerminalInput("");
             }}>
-              <span>›</span>
-              <input value={terminalInput} onChange={(event) => setTerminalInput(event.target.value)} autoFocus aria-label="Terminal command" placeholder="type help" />
+              <span className="terminal-prompt">ricky@lab:~$</span>
+              <input
+                value={terminalInput}
+                onChange={(event) => setTerminalInput(event.target.value)}
+                autoFocus
+                aria-label="Terminal command"
+                placeholder="help"
+                spellCheck={false}
+                autoComplete="off"
+              />
+              <button type="submit" className="terminal-run" aria-label="Run command">ENTER</button>
             </form>
           </div>
         </div>
