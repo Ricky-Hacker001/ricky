@@ -120,6 +120,6 @@ const Index = () => {
     </main>
     <footer className="footer"><span>© {new Date().getFullYear()} Ricky. Built in public.</span><span>NO TEMPLATE. JUST SIDE QUESTS.</span></footer>
   </div>
-);
+};
 
 export default Index;
