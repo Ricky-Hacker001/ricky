@@ -390,12 +390,6 @@ const Index = () => {
       </main>
 
 
-      <button type="button" className="terminal-launcher" onClick={() => setTerminalOpen(true)} aria-label="Open interactive terminal">
-        <span className="terminal-launcher-ring" />
-        <TerminalSquare size={18} />
-        <span>TERMINAL</span>
-      </button>
-
       {terminalOpen && (
         <div className="terminal-overlay" role="dialog" aria-modal="true" aria-label="Interactive terminal">
           <div className="terminal-window">
