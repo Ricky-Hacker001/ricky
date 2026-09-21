@@ -280,6 +280,16 @@ const Index = () => {
             <span className="hero-orbit orbit-one" />
             <span className="hero-orbit orbit-two" />
             <span className="hero-orbit orbit-three" />
+            <button type="button" className="reactor-3d" onClick={() => setTerminalOpen(true)} aria-label="Open cyber reactor terminal">
+              <span className="reactor-ring ring-a" />
+              <span className="reactor-ring ring-b" />
+              <span className="reactor-ring ring-c" />
+              <span className="reactor-energy" />
+              <span className="reactor-core-dot" />
+              <span className="reactor-particle particle-a" />
+              <span className="reactor-particle particle-b" />
+              <span className="reactor-particle particle-c" />
+            </button>
             <span className="hero-core" />
             <span className="hero-wire hero-wire-a" />
             <span className="hero-wire hero-wire-b" />
