@@ -173,9 +173,16 @@ const Index = () => {
             <a key={id} href={`#${id}`}>{label}</a>
           ))}
         </nav>
-        <a className="status-pill" href="mailto:ricky.devsec@gmail.com">
-          <span className="status-dot" /> available
-        </a>
+        <button
+          type="button"
+          className="nav-terminal-btn"
+          onClick={() => setTerminalOpen(true)}
+          aria-label="Open interactive terminal"
+        >
+          <TerminalSquare size={15} />
+          <span>TERMINAL</span>
+          <span className="nav-terminal-status" />
+        </button>
       </header>
 
       <main id="top">
