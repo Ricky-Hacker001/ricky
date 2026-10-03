@@ -21,8 +21,10 @@ const CyberBackground = () => {
     let height = 0;
     let dpr = 1;
     let time = 0;
+    let lastFrame = 0;
+    const frameInterval = 1000 / 30;
     const pointer = { x: -1000, y: -1000 };
-    const nodes: NodePoint[] = Array.from({ length: 42 }, (_, i) => ({
+    const nodes: NodePoint[] = Array.from({ length: 30 }, (_, i) => ({
       x: ((i * 173.7) % 1000) / 1000,
       y: ((i * 91.3 + 40) % 1000) / 1000,
       z: 0.2 + ((i * 37) % 80) / 100,
@@ -31,7 +33,7 @@ const CyberBackground = () => {
     }));
 
     const resize = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       width = window.innerWidth;
       height = window.innerHeight;
       canvas.width = width * dpr;
@@ -58,6 +60,11 @@ const CyberBackground = () => {
     };
 
     const draw = (timestamp: number) => {
+      if (timestamp - lastFrame < frameInterval) {
+        frame = requestAnimationFrame(draw);
+        return;
+      }
+      lastFrame = timestamp;
       time = timestamp * 0.001;
       ctx.clearRect(0, 0, width, height);
 
@@ -87,7 +94,7 @@ const CyberBackground = () => {
       }
 
       // Floating circuit traces with right-angle routing.
-      const traceCount = compact ? 7 : 13;
+      const traceCount = compact ? 4 : 8;
       for (let i = 0; i < traceCount; i++) {
         const x = ((i * 241 + 90) % width);
         const y = ((i * 137 + 80) % Math.max(height * 0.82, 1));
@@ -109,7 +116,7 @@ const CyberBackground = () => {
       }
 
       // Floating 3D network nodes.
-      nodes.slice(0, compact ? 18 : nodes.length).forEach((node, index) => {
+      nodes.slice(0, compact ? 10 : nodes.length).forEach((node, index) => {
         const driftX = Math.sin(time * node.speed + node.phase) * 0.025;
         const driftY = Math.cos(time * node.speed * 0.8 + node.phase) * 0.025;
         const x = (node.x + driftX) * width;
@@ -143,7 +150,7 @@ const CyberBackground = () => {
 
       // Radar ring around the pointer.
       if (pointer.x > 0 && pointer.y > 0) {
-        for (let ring = 1; ring <= 3; ring++) {
+        for (let ring = 1; ring <= 2; ring++) {
           ctx.beginPath();
           ctx.arc(pointer.x, pointer.y, 32 + ring * 18 + Math.sin(time * 2 + ring) * 3, 0, Math.PI * 2);
           ctx.strokeStyle = `rgba(87,242,255,${0.025 - ring * 0.004})`;
@@ -152,7 +159,7 @@ const CyberBackground = () => {
       }
 
       // Slow scanline.
-      const scanY = (time * 42) % (height + 180) - 90;
+      const scanY = (time * 24) % (height + 180) - 90;
       const gradient = ctx.createLinearGradient(0, scanY - 35, 0, scanY + 35);
       gradient.addColorStop(0, "rgba(87,242,255,0)");
       gradient.addColorStop(0.5, "rgba(87,242,255,.035)");
