@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -97,6 +97,7 @@ const nav = [
 
 const Index = () => {
   const [terminalOpen, setTerminalOpen] = useState(false);
+  const heroRef = useRef<HTMLElement | null>(null);
   const [terminalInput, setTerminalInput] = useState("");
   const [terminalLines, setTerminalLines] = useState<string[]>([
     "ricky@lab:~$ system --status",
@@ -105,13 +106,22 @@ const Index = () => {
   ]);
 
   useEffect(() => {
+    let pointerFrame = 0;
+    let pointerX = 0;
+    let pointerY = 0;
     const move = (event: PointerEvent) => {
-      const x = (event.clientX / window.innerWidth - 0.5) * 2;
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      if (pointerFrame) return;
+      pointerFrame = requestAnimationFrame(() => {
+      const x = (pointerX / window.innerWidth - 0.5) * 2;
       const y = (event.clientY / window.innerHeight - 0.5) * 2;
       document.documentElement.style.setProperty("--rx", `${(-y * 2.2).toFixed(2)}deg`);
       document.documentElement.style.setProperty("--ry", `${(x * 2.2).toFixed(2)}deg`);
       document.documentElement.style.setProperty("--px", `${(x * 10).toFixed(2)}px`);
       document.documentElement.style.setProperty("--py", `${(y * 10).toFixed(2)}px`);
+      pointerFrame = 0;
+      });
     };
 
     window.addEventListener("pointermove", move, { passive: true });
@@ -165,6 +175,7 @@ const Index = () => {
 
     return () => {
       window.removeEventListener("pointermove", move);
+      if (pointerFrame) cancelAnimationFrame(pointerFrame);
       window.removeEventListener("scroll", updateMotion);
       window.removeEventListener("resize", updateMotion);
       revealObserver.disconnect();
@@ -240,7 +251,7 @@ const Index = () => {
       </header>
 
       <main id="top">
-        <section className="hero-section">
+        <section ref={heroRef} className="hero-section">
           <div className="hero-copy">
             <div className="eyebrow">
               <span className="eyebrow-line" /> SECURITY × SOFTWARE × HARDWARE
