@@ -229,3 +229,15 @@ Organizations must implement:
 `
 }
 ];
+export type Blog = {
+  id: string;
+  title: string;
+  description: string;
+  date: string;
+  content: string;
+  tags?: string[];
+};
+
+export const BLOGS = blogs as Blog[];
+
+export const getBlog = (id?: string): Blog | undefined => BLOGS.find((b) => b.id === id);
