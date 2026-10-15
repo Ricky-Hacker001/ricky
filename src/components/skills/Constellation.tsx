@@ -130,7 +130,7 @@ const Constellation = () => {
                   aria-pressed={on}
                   aria-describedby="constellation-readout"
                   data-cursor="EXPLORE"
-                  className={`absolute z-[2] flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full border px-4 py-2 font-mono text-[11px] tracking-[0.18em] backdrop-blur-sm transition-all duration-300 ${
+                  className={`absolute z-[2] flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 rounded-full border px-4 py-2 font-mono text-[11px] tracking-[0.18em] transition-[color,background-color,border-color,box-shadow] duration-300 ${
                     on
                       ? "border-signal-red/70 bg-signal-red/15 text-white shadow-[0_0_30px_-8px_rgba(255,45,61,0.8)]"
                       : active

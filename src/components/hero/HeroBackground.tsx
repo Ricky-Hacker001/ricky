@@ -1,6 +1,9 @@
+import { useActive } from "@/hooks/useFx";
+
 /**
  * Hero environment — pure CSS/SVG: radial light, masked technical grid,
- * circuit traces, coordinates and a slow scan band. No JS per frame.
+ * circuit traces, coordinates and a slow scan band. No JS per frame; the
+ * loops pause once the hero is scrolled away.
  */
 const TRACES = [
   "M0 120 H180 L210 150 H420 L450 120 H620",
@@ -11,8 +14,10 @@ const TRACES = [
 ];
 const NODES: [number, number][] = [[210, 150], [450, 120], [1210, 250], [1030, 280], [170, 610], [1270, 730], [750, 90]];
 
-const HeroBackground = () => (
-  <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
+const HeroBackground = () => {
+  const [ref, active] = useActive<HTMLDivElement>();
+  return (
+  <div ref={ref} className="pointer-events-none absolute inset-0 overflow-hidden" data-paused={!active} aria-hidden>
     {/* light */}
     <div
       className="absolute inset-0"
@@ -68,6 +73,7 @@ const HeroBackground = () => (
     {/* bottom fade into page */}
     <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-[var(--bg)]" />
   </div>
-);
+  );
+};
 
 export default HeroBackground;

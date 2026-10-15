@@ -24,7 +24,7 @@ function Rig({ quality, onDegrade }: { quality: Quality; onDegrade: () => void }
   const perf = useRef({ acc: 0, frames: 0, slowFor: 0, dpr: 0, degraded: false });
 
   useEffect(() => {
-    perf.current.dpr = Math.min(window.devicePixelRatio || 1, quality === "high" ? 1.75 : 1.25);
+    perf.current.dpr = Math.min(window.devicePixelRatio || 1, quality === "high" ? 1.5 : 1.25);
   }, [quality]);
 
   useFrame((_, rawDt) => {
@@ -41,7 +41,7 @@ function Rig({ quality, onDegrade }: { quality: Quality; onDegrade: () => void }
     p.frames++;
     if (p.acc >= 1) {
       const avg = p.acc / p.frames;
-      p.slowFor = avg > 1 / 45 ? p.slowFor + 1 : 0;
+      p.slowFor = avg > 1 / 50 ? p.slowFor + 1 : 0;
       if (p.slowFor >= 2 && p.dpr > 1) {
         p.dpr = Math.max(1, p.dpr * 0.75);
         setDpr(p.dpr);
@@ -273,7 +273,7 @@ const HeroScene = ({
   return (
     <Canvas
       frameloop={active ? "always" : "never"}
-      dpr={capture ? 2 : [1, quality === "high" ? 1.75 : 1.25]}
+      dpr={capture ? 2 : [1, quality === "high" ? 1.5 : 1.25]}
       camera={{ position: [0.1, 1.12, 5.0], fov: 32, near: 0.1, far: 30 }}
       gl={{ antialias: quality === "high", alpha: true, powerPreference: "high-performance", stencil: false, preserveDrawingBuffer: capture }}
       style={{ background: "transparent" }}
