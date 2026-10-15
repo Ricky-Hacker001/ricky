@@ -272,6 +272,7 @@ img, svg, canvas { display: block; }
 /* =================================================================== */
 /*  GLOBAL ATMOSPHERE (fixed, compositor-only)                          */
 /* =================================================================== */
+.fx-glow, .fx-noise, .fx-scan { transform: translateZ(0); contain: strict; }
 .fx-glow {
   position: fixed; inset: 0; z-index: 0; pointer-events: none;
   background:
@@ -296,11 +297,10 @@ img, svg, canvas { display: block; }
 .reveal {
   opacity: 0;
   transform: translateY(28px);
-  filter: blur(6px);
-  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), filter 0.9s var(--ease);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
   transition-delay: var(--d, 0ms);
 }
-.reveal.in { opacity: 1; transform: none; filter: none; }
+.reveal.in { opacity: 1; transform: none; }
 
 /* Masked line reveal. The .clip-reveal element is the overflow clipper and
    the IntersectionObserver target (its own box is never clipped, so IO sees
@@ -349,7 +349,6 @@ img, svg, canvas { display: block; }
   opacity: 1; transform: scale(1); width: 78px; height: 78px;
   border-color: rgba(255, 45, 61, 0.8);
   background: rgba(255, 45, 61, 0.12);
-  backdrop-filter: blur(4px);
 }
 .cursor-ring:not([data-mode="label"]) > span { color: transparent; }
 body.has-cursor, body.has-cursor a, body.has-cursor button, body.has-cursor [role="button"] { cursor: none; }
@@ -425,7 +424,7 @@ body.has-cursor input, body.has-cursor textarea { cursor: text; }
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
-  .reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+  .reveal { opacity: 1 !important; transform: none !important; }
   .clip-reveal > * { transform: none !important; }
 }
 

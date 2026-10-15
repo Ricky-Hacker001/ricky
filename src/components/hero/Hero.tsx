@@ -12,8 +12,8 @@ import AvatarStage from "./AvatarStage";
 const ease = [0.2, 0.8, 0.2, 1] as const;
 
 const rise: Variants = {
-  hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
-  show: (i: number) => ({ opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.9, ease, delay: 0.15 + i * 0.08 } }),
+  hidden: { opacity: 0, y: 24 },
+  show: (i: number) => ({ opacity: 1, y: 0, transition: { duration: 0.9, ease, delay: 0.15 + i * 0.08 } }),
 };
 
 const char: Variants = {
@@ -57,7 +57,7 @@ const Tag = ({ text, className, delay }: { text: string; className: string; dela
     initial={{ opacity: 0, x: -6 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ delay, duration: 0.8, ease }}
-    className={`pointer-events-none absolute hidden items-center gap-2 rounded-md border border-white/[0.08] bg-black/40 px-2.5 py-1.5 font-mono text-[9.5px] tracking-[0.18em] text-white/55 backdrop-blur-sm sm:flex ${className}`}
+    className={`pointer-events-none absolute hidden items-center gap-2 rounded-md border border-white/[0.08] bg-black/55 px-2.5 py-1.5 font-mono text-[9.5px] tracking-[0.18em] text-white/55 sm:flex ${className}`}
   >
     <span className="h-1 w-1 bg-signal-red" />
     {text}

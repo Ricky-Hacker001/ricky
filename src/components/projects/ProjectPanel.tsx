@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { useActive } from "@/hooks/useFx";
 import { ArrowUpRight, Github } from "lucide-react";
 import type { Project } from "@/data/projects";
 import ProjectVisual from "./ProjectVisual";
@@ -10,15 +11,26 @@ import ProjectVisual from "./ProjectVisual";
  */
 const ProjectPanel = ({ project, flip }: { project: Project; flip: boolean }) => {
   const ref = useRef<HTMLElement>(null);
+  const frame = useRef(0);
+  const [wrap, onScreen] = useActive<HTMLDivElement>();
   const fine = typeof window !== "undefined" && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
   const still = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  // Coalesce pointer events to one style write per frame, using the latest position.
+  const last = useRef({ x: 0, y: 0 });
   const onMove = (e: React.PointerEvent) => {
+    if (!fine || still) return;
+    last.current.x = e.clientX;
+    last.current.y = e.clientY;
+    if (!frame.current) frame.current = requestAnimationFrame(apply);
+  };
+  const apply = () => {
+    frame.current = 0;
     const el = ref.current;
-    if (!el || !fine || still) return;
+    if (!el) return;
     const r = el.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width - 0.5;
-    const py = (e.clientY - r.top) / r.height - 0.5;
+    const px = (last.current.x - r.left) / r.width - 0.5;
+    const py = (last.current.y - r.top) / r.height - 0.5;
     el.classList.add("is-active");
     el.style.setProperty("--ry", `${px * 5}deg`);
     el.style.setProperty("--rx", `${-py * 4}deg`);
@@ -28,6 +40,8 @@ const ProjectPanel = ({ project, flip }: { project: Project; flip: boolean }) =>
     el.style.setProperty("--sy", `${(py + 0.5) * 100}%`);
   };
   const onLeave = () => {
+    cancelAnimationFrame(frame.current);
+    frame.current = 0;
     const el = ref.current;
     if (!el) return;
     el.classList.remove("is-active");
@@ -38,7 +52,7 @@ const ProjectPanel = ({ project, flip }: { project: Project; flip: boolean }) =>
   const primary = project.live ?? project.repo;
 
   return (
-    <div className="reveal">
+    <div ref={wrap} className="reveal" data-paused={!onScreen}>
     <article
       ref={ref}
       onPointerMove={onMove}
@@ -63,10 +77,10 @@ const ProjectPanel = ({ project, flip }: { project: Project; flip: boolean }) =>
           </div>
           <div className="spot absolute inset-0" />
           <div className="scanline" />
-          <span className="text-outline pointer-events-none absolute -bottom-6 left-4 font-display text-[clamp(7rem,14vw,12rem)] font-bold leading-none tracking-[-0.06em] transition-all duration-700 ease-out group-hover:-bottom-2 group-hover:scale-110 group-hover:[-webkit-text-stroke-color:rgba(255,45,61,0.6)]">
+          <span className="text-outline pointer-events-none absolute -bottom-6 left-4 font-display text-[clamp(7rem,14vw,12rem)] font-bold leading-none tracking-[-0.06em] transition-[transform,-webkit-text-stroke-color] duration-700 ease-out group-hover:-translate-y-4 group-hover:scale-110 group-hover:[-webkit-text-stroke-color:rgba(255,45,61,0.6)]">
             {project.code}
           </span>
-          <span className="absolute right-4 top-4 flex items-center gap-2 rounded-md border border-white/10 bg-black/50 px-2.5 py-1 font-mono text-[9.5px] tracking-[0.2em] text-white/70 backdrop-blur">
+          <span className="absolute right-4 top-4 flex items-center gap-2 rounded-md border border-white/10 bg-black/65 px-2.5 py-1 font-mono text-[9.5px] tracking-[0.2em] text-white/70">
             <span className={`h-1.5 w-1.5 rounded-full ${project.status === "ACTIVE" ? "bg-emerald-400" : project.status === "SHIPPED" ? "bg-white/70" : "bg-amber-400"}`} />
             {project.status}
           </span>

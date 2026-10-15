@@ -261,7 +261,7 @@ const HardwareScene = ({
   return (
     <Canvas
       frameloop={active ? "always" : "never"}
-      dpr={[1, quality === "high" ? 1.6 : 1.2]}
+      dpr={[1, quality === "high" ? 1.5 : 1.2]}
       raycaster={{ params: { Line: { threshold: 0.008 }, Points: { threshold: 0.012 } } as THREE.RaycasterParameters }}
       camera={{ position: [0, 1.22, 1.3], fov: 36, near: 0.05, far: 20 }}
       gl={{ antialias: quality === "high", alpha: true, powerPreference: "high-performance", stencil: false }}
